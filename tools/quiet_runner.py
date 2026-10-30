@@ -71,8 +71,10 @@ def run():
   matlab=os.environ.get('UAV_MATLAB',r'D:/Program Files/MATLAB/R2021b/bin/matlab.exe')
   execute([matlab,'-batch',"maxNumCompThreads(1); RunExperiments"],'planning_console.txt','serial_experiments')
   execute([sys.executable,'-u',str(ROOT/'simulation/run_tracking.py')],'tracking_console.txt','tracking')
+  execute([sys.executable,'-u',str(ROOT/'tools/winding_mechanism_audit.py')],'mechanism_console.txt','independent_feasibility_audit')
   execute([sys.executable,'-u',str(ROOT/'tools/winding_evidence.py')],'winding_figures_console.txt','figures')
   execute([sys.executable,'-u',str(ROOT/'tools/analyze_revision.py')],'analysis_console.txt','analysis')
+  execute([sys.executable,'-u',str(ROOT/'tools/analyze_comparisons.py')],'comparison_analysis_console.txt','comparison_audit')
   stop.set();thread.join(timeout=3)
   state('ready_for_manuscript_sync',runner_pid=os.getpid(),child_pid=None)
  except Exception:
