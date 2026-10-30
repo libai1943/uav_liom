@@ -1,6 +1,6 @@
-function result=run(s,c,method)
+function result=run(s,c,method,sharedReference)
 % Fixed task, common physical acceptance and budget across all method variants.
-clock=tic; cpu0=cputime; reference=[];
+clock=tic; cpu0=cputime; reference=[]; initializationOffset=0; cpuOffset=0;
 result=struct('method',method,'success',false,'successWithinBudget',false,...
     'status','NOT_RUN','failureStage','','history',{{}},'cost',NaN,'outerIterations',0,...
     'solveCount',0,'workerCpuSeconds',0,'initializationSeconds',0,'guideSeconds',0,'sfmAndTimingSeconds',0,...
@@ -9,14 +9,18 @@ result=struct('method',method,'success',false,'successWithinBudget',false,...
     'relocatedStatic',0,'relocatedRelative',0,'maxVariables',0,'maxRows',0,'maxNonzeros',0);
 try
     tick=tic;
-    try, reference=revision.initialize(s,c);
+    try
+        if nargin>=4
+            reference=sharedReference;
+            initializationOffset=reference.seconds; cpuOffset=reference.cpuSeconds;
+        else, reference=revision.initialize(s,c); end
     catch err
         result.initializationSeconds=toc(tick); result.guideSeconds=NaN; result.sfmAndTimingSeconds=NaN;
         result.failureStage='initialization'; rethrow(err);
     end
     result.initializationSeconds=reference.seconds; result.guideSeconds=reference.guideSeconds;
     result.sfmAndTimingSeconds=reference.sfmAndTimingSeconds; ref=reference;
-    rho=[c.kinematicPenalty,c.slackPenalty]; budget=c.totalBudget; qTolerance=c.normalizedDefectTolerance;
+    rho=[c.kinematicPenalty,c.slackPenalty]; budget=max(0,c.totalBudget-initializationOffset); qTolerance=c.normalizedDefectTolerance;
     oneshot=ismember(method,{'hard_once','rsc_once','soft_once'});
     maxOuter=c.maxOuter; if oneshot, maxOuter=1; end
     for outer=1:maxOuter
@@ -80,7 +84,7 @@ catch err
     if isempty(result.failureStage), result.failureStage='solver_or_program'; end
     fprintf(2,'%s: %s\n',method,err.message);
 end
-result.reference=reference; result.planningSeconds=toc(clock); result.cpuSeconds=cputime-cpu0+result.workerCpuSeconds;
+result.reference=reference; result.planningSeconds=toc(clock)+initializationOffset; result.cpuSeconds=cputime-cpu0+result.workerCpuSeconds+cpuOffset;
 result.successWithinBudget=result.success&&result.planningSeconds<=c.totalBudget;
 result.timeWithinBudget=result.planningSeconds<=c.totalBudget;
 if result.success&&~result.successWithinBudget, result.status='ACCEPTED_OVER_BUDGET'; end

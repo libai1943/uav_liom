@@ -7,9 +7,9 @@ from scipy.io import loadmat
 from scipy import sparse
 from scipy.optimize import linprog
 from contextlib import nullcontext
-FOLDER=ROOT/'results/winding_fine_stage1';OUT=ROOT/'results/winding_evidence';OUT.mkdir(exist_ok=True)
-m=loadmat(FOLDER/'W1_006_initial_hardRSC_phaseI.mat',simplify_cells=True)['m'];n=len(m['free']);C=m['C'].tocsr();lo=m['lower'];hi=m['upper'];lb=m['lb'];ub=m['ub']
-job=loadmat(FOLDER/'W1_006_rsc_iter.mat',simplify_cells=True)['job'];N=int(job['cfg']['numAgents']);K=int(job['cfg']['intervals']);Q=K+1;E=int(m['relativeCount']);facets=(m['fullC'].shape[0]-E-3*N*K)//(N*(Q+K));assert facets==24,facets
+FOLDER=ROOT/'results/winding_repeated';OUT=ROOT/'results/winding_evidence';OUT.mkdir(exist_ok=True)
+m=loadmat(FOLDER/'PW1_S6102_R1_initial_hardRSC_phaseI.mat',simplify_cells=True)['m'];n=len(m['free']);C=m['C'].tocsr();lo=m['lower'];hi=m['upper'];lb=m['lb'];ub=m['ub']
+job=loadmat(FOLDER/'PW1_S6102_R1_rsc_iter.mat',simplify_cells=True)['job'];N=int(job['cfg']['numAgents']);K=int(job['cfg']['intervals']);Q=K+1;E=int(m['relativeCount']);facets=(m['fullC'].shape[0]-E-3*N*K)//(N*(Q+K));assert facets==24,facets
 full_indices=np.flatnonzero(np.asarray(abs(m['fullC'].tocsr()[:,np.asarray(m['free'],int)-1]).sum(axis=1)).ravel()>0);assert len(full_indices)==C.shape[0]
 relative_start=facets*N*(Q+K);relative=(full_indices>=relative_start)&(full_indices<relative_start+E);dynamics=full_indices>=relative_start+E
 
@@ -21,5 +21,5 @@ def phase(mask):
  report={'success':bool(z.success),'status':int(z.status),'message':z.message,'minimum_scaled_violation':float(z.fun) if z.success else None,'rows':int(a.shape[0])}
  if z.success:report['primal_violation']=float(max(0,np.max(aa@z.x-b)))
  return report
-out={'source':'W1_006 initial hard RSC matrix; same fixed task and spatial boxes','full':phase(np.ones(C.shape[0],bool)),'without_relative_rows':phase(~relative),'without_kinematic_equalities':phase(~dynamics),'N':N,'K':K,'facets':facets,'relative_rows':E}
+out={'source':'Winding reference-layout initial hard RSC matrix; same fixed task and spatial boxes','full':phase(np.ones(C.shape[0],bool)),'without_relative_rows':phase(~relative),'without_kinematic_equalities':phase(~dynamics),'N':N,'K':K,'facets':facets,'relative_rows':E}
 (OUT/'mechanism_lp_audit.json').write_text(json.dumps(out,indent=2));print(json.dumps(out,indent=2))

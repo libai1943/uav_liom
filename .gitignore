@@ -1,10 +1,8 @@
+tmp/
+results/
 .venv/
 __pycache__/
-tmp/
-results/**/*.mat
-results/**/*.npz
-*.partial.mat
 *.aux
 *.log
-*.blg
 *.out
+*.blg

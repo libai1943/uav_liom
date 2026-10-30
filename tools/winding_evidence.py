@@ -8,7 +8,7 @@ import matplotlib;matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from analyze_revision import trajectory_axes,curves,hist
 OUT=ROOT/'results/winding_evidence';OUT.mkdir(exist_ok=True)
-source=ROOT/'results/winding_paired_stage1/PW1_S6102_R1_adaptive.mat';d=loadmat(source,simplify_cells=True);r=d['result'];s=d['job']['scene'];c=d['job']['cfg'];assert r['success']
+source=ROOT/'results/winding_repeated/PW1_S6102_R1_adaptive.mat';d=loadmat(source,simplify_cells=True);r=d['result'];s=d['job']['scene'];c=d['job']['cfg'];assert r['success']
 t,p=curves(r['trajectory'],c['horizon'],12);obs=np.asarray(s['obstacles']).reshape(-1,6)
 fig=plt.figure(figsize=(10.5,7.2));gs=fig.add_gridspec(2,2,height_ratios=[1.35,1],left=.075,right=.98,bottom=.10,top=.98,wspace=.24,hspace=.42)
 a=fig.add_subplot(gs[0,0],projection='3d');b=fig.add_subplot(gs[0,1]);trajectory_axes(a,d);trajectory_axes(b,d,xy=True)
@@ -19,14 +19,14 @@ for o in obs:
  gap=np.maximum(np.maximum(o[:3,None,None]-p,p-o[3:,None,None]),0);clear=np.minimum(clear,np.linalg.norm(gap,axis=0).min(axis=1)-c['radius'])
 dax.plot(t,pair,c='#0077BB',label='Minimum pair distance');dax.plot(t,clear,c='#AA3377',label='Obstacle surface clearance');dax.axhline(2*c['radius']+c['clearance'],c='#0077BB',ls='--',lw=.9);dax.axhline(c['clearance'],c='#AA3377',ls=':',lw=1.3);dax.set(xlabel='Flight time (s)',ylabel='Distance (m)',xlim=(0,c['horizon']),ylim=(0,max(2.6,float(np.quantile(pair,.95))*1.1)));dax.grid(alpha=.2);dax.legend(frameon=False,fontsize=8.5);dax.text(.5,-.28,'(d) Clearances along the accepted motion',transform=dax.transAxes,ha='center')
 fig.savefig(OUT/'winding_recovery_case.pdf',bbox_inches='tight');fig.savefig(OUT/'winding_recovery_case.png',dpi=180,bbox_inches='tight');plt.close(fig)
-summary={'illustrative_source':str(source),'validation':r['validation'],'restoration':r['restoration'],'exploratory':{},'paired':{}}
-for tag,folder in [('coarse','winding_search_stage1'),('fine','winding_fine_stage1'),('repeat','winding_paired_stage1'),('fresh','winding_paired_stage2'),('map','winding_geometry_map')]:
+summary={'illustrative_source':str(source),'validation':r['validation'],'restoration':r['restoration'],'paired':{}}
+for tag,folder in [('repeat','winding_repeated'),('fresh','winding_layouts'),('map','winding_geometry_map')]:
  path=ROOT/'results'/folder/'summary.csv'
  if not path.exists():continue
  rows=list(csv.DictReader(path.open(encoding='utf-8-sig')));stats={}
  for method in sorted(set(x['Method'] for x in rows)):
   rr=[x for x in rows if x['Method']==method];stats[method]={'attempts':len(rr),'accepted':sum(int(x['Accepted']) for x in rr),'within_budget':sum(int(x['WithinBudget']) for x in rr),'mean_wall_s':float(np.nanmean([float(x['Wall_s']) for x in rr]))}
- key='exploratory' if tag in ('coarse','fine') else 'paired';summary[key][tag]={'methods':stats,'complete':(path.parent/'completed.json').exists()}
+ key='paired';summary[key][tag]={'methods':stats,'complete':(path.parent/'completed.json').exists()}
  ap=path.parent/'comparative_audit.csv'
  if ap.exists():summary[key][tag]['comparative_audit']=list(csv.DictReader(ap.open(encoding='utf-8-sig')))
 (OUT/'evidence_summary.json').write_text(json.dumps(summary,indent=2,default=lambda x:np.asarray(x).tolist()));print({k:{a:b['methods'] for a,b in v.items()} for k,v in summary.items() if k in ('exploratory','paired')})

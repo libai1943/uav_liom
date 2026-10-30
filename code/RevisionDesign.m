@@ -1,16 +1,16 @@
 function jobs=RevisionDesign(suite)
 % All scene seeds, sweep levels and variants are fixed before batch execution.
 if nargin<1, suite='main'; end
-base=RevisionConfig(); original=BuAblationCases(); jobs=struct([]);
+base=RevisionConfig(); cases=BuAblationCases(); jobs=struct([]);
 switch suite
     case 'main'
         for k=1:30
-            c=transfer(original(k).cfg); s=original(k).scene;
+            c=transfer(cases(k).cfg); s=cases(k).scene;
             for rep=1:3
                 methods={'adaptive','liom','hard_once','hard_iter','rsc_iter'};
                 if rep==1, methods=[methods,{'rsc_once','soft_once'}]; end
                 methods=circshift(methods,[0,mod(k+rep-2,numel(methods))]);
-                for m=methods, add(original(k).id,c,s,m{1},rep,'default'); end
+                for m=methods, add(cases(k).id,c,s,m{1},rep,'default'); end
             end
         end
     case 'physical'
@@ -28,8 +28,8 @@ switch suite
     case 'horizon'
         for k=[13 14 19 20 25 26]
             for horizon=[8 9 10 11 12]
-                c=transfer(original(k).cfg); c.horizon=horizon; s=original(k).scene;
-                id=sprintf('%s_T%02d',original(k).id,horizon);
+                c=transfer(cases(k).cfg); c.horizon=horizon; s=cases(k).scene;
+                id=sprintf('%s_T%02d',cases(k).id,horizon);
                 for m={'adaptive','liom','hard_iter','rsc_iter'}, add(id,c,s,m{1},1,'default'); end
             end
         end
@@ -47,7 +47,7 @@ switch suite
         end
     case {'sensitivity','initialization','bounds','acceptance'}
         for k=[4 13 14 20 25 26]
-            c0=transfer(original(k).cfg); s=original(k).scene; id=original(k).id;
+            c0=transfer(cases(k).cfg); s=cases(k).scene; id=cases(k).id;
             if strcmp(suite,'sensitivity')
                 fields={'smoothWeight','kinematicPenalty','slackPenalty','kinematicPenaltyMax','slackPenaltyMax',...
                     'normalizedDefectTolerance','meanSlackTolerance','stcExpansion','rstcExpansion',...

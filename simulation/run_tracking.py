@@ -16,13 +16,13 @@ def tests():
  (OUT/'controller_checks.json').write_text(json.dumps({'nominal_maneuver':nominal,'perturbed_maneuver':metric,'parameters':PARAM},indent=2));print('Independent controller tests passed.',flush=True)
 def run():
  tests();paths=[]
- for p in sorted((ROOT/'results/osqp_revision_v6/main').glob('C*_adaptive_default_R1.mat')):
+ for p in sorted((ROOT/'results/benchmark/main').glob('C*_adaptive_default_R1.mat')):
   if loadmat(p,simplify_cells=True)['result']['success']:paths.append(p)
  selected=set()
- for p in sorted((ROOT/'results/osqp_revision_v6/physical').glob('*_adaptive_default_R1.mat')):
+ for p in sorted((ROOT/'results/benchmark/physical').glob('*_adaptive_default_R1.mat')):
   d=loadmat(p,simplify_cells=True);key=(d['job']['scene']['name'],d['job']['cfg']['numAgents'])
   if d['result']['success'] and key not in selected:paths.append(p);selected.add(key)
- for rel in ['winding_paired_stage1/PW1_S6102_R1_adaptive.mat','winding_paired_stage2/PW2_S7202_R1_adaptive.mat']:
+ for rel in ['winding_repeated/PW1_S6102_R1_adaptive.mat','winding_layouts/PW2_S7202_R1_adaptive.mat']:
   p=ROOT/'results'/rel
   if p.exists() and loadmat(p,simplify_cells=True)['result']['success']:paths.append(p)
  (OUT/'selection.json').write_text(json.dumps({'rule':'All accepted main adaptive R1 motions and first accepted physical motion per family/team size; plus the representative winding recovery and fresh-seed recovery; both conditions; no selection on tracking outcome.','files':list(map(str,paths))},indent=2))

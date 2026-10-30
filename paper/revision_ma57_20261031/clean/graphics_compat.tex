@@ -1,8 +1,0 @@
-% Do not modify the supplied mdpi.cls. Use its unchanged vector logo in PDF
-% format so that sandboxed Tectonic/XeTeX does not need EPS shell conversion.
-\let\MDPIOriginalIncludeGraphics\includegraphics
-\renewcommand{\includegraphics}[2][]{%
-  \IfStrEq{#2}{Definitions/logo-mdpi.eps}%
-    {\MDPIOriginalIncludeGraphics[#1]{Definitions/logo-mdpi.pdf}}%
-    {\MDPIOriginalIncludeGraphics[#1]{#2}}%
-}

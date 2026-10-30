@@ -1,5 +1,1 @@
-Research source and complete results are publicly shared by the authors.
-No additional blanket software license is assigned in this deposit. Existing
-third-party notices, including the MDPI LaTeX template notices, remain in force.
-MATLAB, CasADi, HSL/ma57 and other installed binaries are not redistributed.
-Obtain required software and licenses from their respective providers.
+Third-party dependencies retain their own licenses. MATLAB, CasADi and HSL/ma57 binaries are not distributed. No additional blanket software license is assigned.

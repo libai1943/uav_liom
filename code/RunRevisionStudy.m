@@ -46,6 +46,7 @@ for index=selection
     pending=struct('index',index,'key',job.key,'started',datestr(now,30));
     fid=fopen(fullfile(folder,'pending.json'),'w'); fprintf(fid,'%s',jsonencode(pending)); fclose(fid);
     fprintf('\nATTEMPT %d/%d %s N=%d K=%d T=%g\n',index,numel(jobs),job.key,job.cfg.numAgents,job.cfg.intervals,job.cfg.horizon);
+    WaitForQuietCPU();
     result=revision.run(job.scene,job.cfg,job.method);
     temp=fullfile(folder,[job.key,'.partial.mat']); save(temp,'job','result','environment','-v7'); movefile(temp,file,'f');
     copyfile(file,fullfile(mirror,[job.key,'.mat']));

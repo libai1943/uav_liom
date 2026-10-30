@@ -1,8 +1,0 @@
-note: "version 2" Tectonic command-line interface activated
-note: Running TeX ...
-Fontconfig error: Cannot load default config file: No such file: (null)
-note: Running xdvipdfmx ...
-note: Writing `main.pdf` (67.0400390625 KiB)
-note: Not writing `main.out`: it would be empty.
-note: Writing `main.log` (22.419921875 KiB)
-note: Writing `main.aux` (653 B)

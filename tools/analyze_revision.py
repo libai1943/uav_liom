@@ -9,7 +9,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-PAPER=ROOT/'paper/revised_clean';DATA=PAPER/'data_revision';FIG=PAPER/'figures_revision';RES=ROOT/'results/osqp_revision_v6'
+PAPER=ROOT/'paper/clean';DATA=PAPER/'data_revision';FIG=PAPER/'figures_revision';RES=ROOT/'results/benchmark'
 NAMES={'adaptive':'LIOM (proposed)','liom':'Soft LIOM','hard_iter':'Hard box–iterative','rsc_iter':'Hard RSC–iterative','hard_once':'Hard box–once','rsc_once':'Hard RSC–once','soft_once':'Soft once'}
 COL={'adaptive':'#C62828','liom':'#0077BB','hard_iter':'#E69F00','rsc_iter':'#6A3D9A','hard_once':'#009E73','rsc_once':'#333333','soft_once':'#56B4E9'}
 MARK={'adaptive':'o','liom':'s','hard_iter':'^','rsc_iter':'D','hard_once':'v','rsc_once':'P','soft_once':'X'}
