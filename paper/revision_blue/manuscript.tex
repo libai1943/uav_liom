@@ -1,0 +1,79 @@
+% Main file. MDPI ACS template, Electronics submission mode.
+% Author details and funding statement supplied by the authors.
+\documentclass[electronics,article,submit,moreauthors]{Definitions/mdpi}
+\errorcontextlines=80
+\input{graphics_compat}
+% Add the official journal logo while retaining the template's submit mode.
+\makeatletter
+\patchcmd{\@maketitle}{\hfill \href{https://www.mdpi.com}}{\href{https://www.mdpi.com/journal/electronics}{\includegraphics[height=1cm]{Definitions/electronics-logo.png}}\hfill \href{https://www.mdpi.com}}{}{\PackageError{electronics-header}{Journal logo insertion failed}{Check the MDPI title-header definition.}}
+\makeatother
+\usepackage[ruled,vlined,linesnumbered,algo2e]{algorithm2e}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small\bfseries}
+\SetAlCapNameFnt{\small\bfseries}
+\SetAlgoNlRelativeSize{-1}
+\SetNlSty{textnormal}{}{}
+\DontPrintSemicolon
+\input{data_rest/statistics}
+\firstpage{1}
+\pubvolume{1}\issuenum{1}\articlenumber{0}
+\pubyear{2026}\copyrightyear{2026}
+\datereceived{ }\daterevised{ }\dateaccepted{ }\datepublished{ }
+\Title{Feasibility Recovery for Fixed-Horizon Multi-UAV Cooperative Flight Trajectory Optimization in High-Conflict Regions}
+\Author{Yangfan Liu $^{1}$, Ziqing Ye $^{2}$, Biao Qian $^{3}$, Wei Tian $^{4,*}$ and Zhonghong Wu $^{3}$}
+\AuthorNames{Yangfan Liu, Ziqing Ye, Biao Qian, Wei Tian and Zhonghong Wu}
+\address{%
+$^{1}$ \quad College of Shipbuilding Engineering, Harbin Engineering University, Qingdao 266000, China; 2020010115@hrbeu.edu.cn\\
+$^{2}$ \quad Unit 92728 of the People's Liberation Army of China, Shanghai 201901, China; 354700311@qq.com\\
+$^{3}$ \quad College of Weaponry Engineering, Naval University of Engineering, Wuhan 430033, China; 2799825233@qq.com (B.Q.); 1714001017@nue.edu.cn (Z.W.)\\
+$^{4}$ \quad School of Information and Electronic Engineering, East China Normal University, Shanghai 200241, China}
+\corres{Correspondence: wtian@cee.ecnu.edu.cn}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\one}{\mathbf{1}}
+\DeclareMathOperator{\geomdist}{dist}
+\DeclareMathOperator{\vecop}{vec}
+\DeclareMathOperator{\clip}{clip}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\emergencystretch}{2em}
+\brokenpenalty=10000
+\setlength{\headheight}{19pt}
+% Full-width scientific figures may share a page with a short text block.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.75}
+% Working draft: no assigned DOI and no claim that submission has occurred.
+\renewcommand{\cright}{\mbox{}}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}\fancyfoot[L]{\footnotesize Manuscript for \emph{Electronics}}\fancyfoot[R]{\footnotesize\thepage}}
+\AtBeginDocument{\fancyhead[L]{\footnotesize Manuscript for \emph{Electronics}}\fancyhead[R]{\footnotesize\thepage{} of \pageref*{LastPage}}\fancyfoot[L]{}\fancyfoot[R]{}}
+\abstract{Cooperative flight through high-conflict regions requires multiple unmanned aerial vehicles to reconcile obstacle clearance, mutual separation, and motion limits within a prescribed completion time. This paper develops a lightweight iterative optimization method for feasibility recovery in fixed-horizon cooperative trajectory planning. A double-integrator model and spatial and relative corridors yield convex quadratic subproblems. Separate penalties on affine kinematic defects and relative-box violations preserve subproblem nonemptiness under endpoint-compatible spatial boxes, while static free-space and translational motion bounds remain hard constraints. A synchronized geometric reference initializes the process. Capped penalty updates and corridor reconstruction maintain intermediate candidates and support consistency recovery without extending the flight horizon. After numerical recovery, closed-form endpoint control correction and exact integration produce continuous-velocity rest-to-rest motion. Complete-interval clearance and motion-limit checks determine final acceptance. Controlled simulations evaluate guided initialization, task-matched computational baselines, and recovery under reduced flight time and corridor freedom. The results demonstrate second-scale planning for the tested small teams and an expanded acceptance region under restricted local geometry, linking tractable optimization to recovery of fixed-horizon cooperative motion.}
+\keyword{relative safe corridor; lightweight iterative optimization method (LIOM); trajectory planning; cooperative trajectory planning; computational optimal control}
+\begin{document}
+\input{sections/bu_introduction}
+\input{sections/related_work}
+\input{sections/bu_formulation}
+\input{sections/bu_corridors}
+\input{sections/bu_initialization}
+\input{sections/bu_liom}
+\input{sections/bu_experiments}
+\input{sections/bu_discussion}
+\par
+\authorcontributions{Conceptualization, Z.Y., W.T. and Z.W.; software, Y.L. and Z.Y.; investigation, Z.Y. and B.Q.; data curation, B.Q.; writing---original draft preparation, Y.L., B.Q. and Z.W.; supervision, W.T. and Z.W.; funding acquisition, W.T. and Z.W.}
+\funding{This research was funded by the Fundamental Research Funds for the Central Universities, grant number 40500-20104-222624.}
+\institutionalreview{Not applicable.}
+\informedconsent{Not applicable.}
+\dataavailability{The data supporting the findings of this study are available from the corresponding author upon reasonable request.}
+\conflictsofinterest{The authors declare no conflict of interest.}
+\begin{adjustwidth}{-\extralength}{0cm}
+\reftitle{References}
+% Keep the publisher's note with the bibliography after the reference update.
+\AtEndEnvironment{thebibliography}{\enlargethispage{3\baselineskip}}
+\bibliography{references}
+\PublishersNote{}
+\end{adjustwidth}
+\end{document}

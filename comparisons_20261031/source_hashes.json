@@ -1,0 +1,22 @@
+[
+  {
+    "File": "D:\\UAV_Cooperative_Planning_Revision_20261029\\comparisons_20261031\\ExternalSelftest.m",
+    "SHA256": "B40761B19AC3545F5A0B48994E55193EAAA102F3DB2BD3A013E8EB0CA6E4287C"
+  },
+  {
+    "File": "D:\\UAV_Cooperative_Planning_Revision_20261029\\comparisons_20261031\\ExternalStudy.m",
+    "SHA256": "0C1789298FE11A0D70A3CA1FE2A5624212E2B78C6C9394EA8DB57C510370AB50"
+  },
+  {
+    "File": "D:\\UAV_Cooperative_Planning_Revision_20261029\\comparisons_20261031\\+external\\run.m",
+    "SHA256": "AF952CD0E48FB30A29FEC7261ADC8936E78BFF9EA2429C1CF5F79A28DBFD7102"
+  },
+  {
+    "File": "D:\\UAV_Cooperative_Planning_Revision_20261029\\comparisons_20261031\\+external\\signedBoxDistance.m",
+    "SHA256": "1CFF97AB474744CC61004D7C873CC22D479EA7AED9537AC1E00852F42E9E4AFD"
+  },
+  {
+    "File": "D:\\UAV_Cooperative_Planning_Revision_20261029\\comparisons_20261031\\+external\\subproblem.m",
+    "SHA256": "279494619797A0104F16A3298721B02B50F6ECA3582D71D256B26F61F90B9707"
+  }
+]

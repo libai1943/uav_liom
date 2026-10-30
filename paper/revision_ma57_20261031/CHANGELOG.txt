@@ -1,0 +1,10 @@
+2026-10-31 MA57 and hard-entry revision
+All 20 nonlinear ASCO/direct-NLP attempts were rerun with Ipopt/ma57.
+All actual QPs remain OSQP. Old MUMPS records are preserved as historical data.
+The controlled 1/3/5 s entry study contains all 30 attempts. The recommended
+entry is 3 s; archived main/external/scaling measurements retain their 1 s setting.
+The abstract explains the layered recovery architecture and uses only the
+team-size number 20. Tracking is software closed-loop MuJoCo.
+Clean and marked manuscripts share exactly 39 references and citation numbers.
+The 33-comment response is synchronized. All 87 PDF pages were rendered and
+visually inspected. Code/data publication is authorized at libai1943/uav_liom.

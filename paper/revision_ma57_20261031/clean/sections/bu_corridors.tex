@@ -1,0 +1,109 @@
+\section{Three-Dimensional Corridor-Based Collision Avoidance}
+\label{sec:corridor}
+\subsection{From a Reference Motion to Linear Restrictions}
+Assume synchronized reference nodes $\widehat{\bp}_{i,k}$ are available. Their generation is described in Section~\ref{sec:initialization}. The reference determines local boxes that provide conservative linear restrictions for collision avoidance. Each box has three lower and three upper coordinate bounds. Independent six-face expansion produces spatial safe travel corridors (STCs) and relative safe travel corridors (RSTCs) indexed by time.
+\begin{figure}[htbp]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\resizebox{\fulllength}{!}{\input{diagrams/framework}}
+\caption{Fixed-horizon cooperative trajectory optimization. The hard entry includes reconstruction and physical checking. Relaxed candidates enter the recovery loop; exact finishing provides a further acceptance branch. All returned motions pass complete-interval checks. Dashed links mark exits to planning failure.\label{fig:framework}}
+\end{adjustwidth}
+\end{figure}
+
+\subsection{Spatial Safe Travel Corridors}
+To account for movement between nodes, the construction includes temporal padding. For an exactly consistent motion satisfying the Euclidean limits, a reachable-speed bound at node $k$ is
+\begin{equation}
+ b_{i,k}=\min\{v_{\max},\,a_{\max}t_k,\,a_{\max}(T_f-t_k)\}.
+ \label{eq:rate}
+\end{equation}
+The two acceleration terms bound the speed reachable from rest and the speed that can still be brought to rest by $T_f$. Thus $b_{i,k}$ tightens padding near either endpoint. Every time in the horizon is at most $h/2$ from a node. With numerical guard $\epsilon_g$, the corresponding padding is
+\begin{equation}
+ q_{i,k}=\min\left\{\frac{v_{\max}h}{2},\,
+ \frac{b_{i,k}h}{2}+\frac{a_{\max}h^2}{8}\right\}+\epsilon_g.
+ \label{eq:padding}
+\end{equation}
+Obstacles are inflated componentwise and the workspace is inset:
+\begin{subequations}\label{eq:inflation}\begin{align}
+ \mathcal O_b^{i,k}&=[\underline{\mathbf o}_b-(r+c+q_{i,k})\one,
+ \overline{\mathbf o}_b+(r+c+q_{i,k})\one],\\
+ \mathcal W_{i,k}&=[\underline{\mathbf w}+(r+q_{i,k})\one,
+ \overline{\mathbf w}-(r+q_{i,k})\one].
+\end{align}\end{subequations}
+Axiswise inflation conservatively covers Euclidean obstacle dilation. The STC is a box
+\begin{equation}
+ \Gamma_{i,k}=[\underline{\boldsymbol\gamma}_{i,k},\overline{\boldsymbol\gamma}_{i,k}]
+ \subset\mathcal W_{i,k},\qquad
+ \Gamma_{i,k}\cap\mathcal O_b^{i,k}=\varnothing\quad\forall b.
+ \label{eq:stc}
+\end{equation}
+
+Starting from a valid seed, the algorithm expands the lower and upper faces along $x$, $y$, and $z$ in turn, following incremental local-box growth~\cite{li2022liom}. A step is accepted only if the box remains inside the inset workspace and outside every inflated obstacle. Each face advances by an increment $\Delta_c$, up to a prescribed expansion limit $\ell_s$. When a proposed step intersects an inflated obstacle or leaves the inset workspace, bisection locates the last admissible face position. That face is frozen while the remaining faces continue to grow. Expansion ends when every face is blocked or has reached its limit. Figure~\ref{fig:corridor}(a) illustrates the seed, an intermediate box, and the final corridor.
+
+A reference node can be invalid after temporal inflation even when its uninflated position is free. Such a node is first clipped to the inset workspace. If it remains inside an inflated obstacle, the existing static guide is searched for the nearest admissible projected point. If no guide candidate is available, admissible projections beyond obstacle faces are tested. An admissible seed is required to construct the local corridor.
+
+The resulting static-avoidance constraint is simply
+\begin{equation}
+ \underline{\boldsymbol\gamma}_{i,k}\leq\bp_{i,k}\leq\overline{\boldsymbol\gamma}_{i,k}.
+ \label{eq:withinSTC}
+\end{equation}
+The spatial box is retained as a hard constraint. Its padding accounts for inter-node motion under the stated speed and acceleration limits.
+
+\subsection{Relative Safe Travel Corridors}
+For synchronized UAVs $i$ and $j$, introduce
+\begin{equation}
+ \mathbf r_{ij,k}=\bp_{i,k}-\bp_{j,k}\in\R^3.
+ \label{eq:relative}
+\end{equation}
+Collision corresponds to this relative vector entering a sphere around the origin. A relative reachable-speed bound and protected radius are
+\begin{subequations}\label{eq:relativepadding}\begin{align}
+ b_{ij,k}&=\min\{2v_{\max},\,2a_{\max}t_k,\,2a_{\max}(T_f-t_k)\},\\
+ R_{ij,k}&=2r+c+\min\left\{v_{\max}h,\,
+ \frac{b_{ij,k}h}{2}+\frac{a_{\max}h^2}{4}\right\}+2\epsilon_g.
+\end{align}\end{subequations}
+\paragraph{Inter-node displacement bound.}
+Consider a kinematically consistent motion satisfying the speed and acceleration limits, and let $t_k$ be a nearest node to $t$, with $\tau=|t-t_k|\leq h/2$. Integrating the velocity bound, or integrating from the node using $\norm{\bv_i(t_k)}_2\leq b_{i,k}$ and the acceleration bound, gives
+\begin{equation}
+ \norm{\bp_i(t)-\bp_{i,k}}_2
+ \leq\min\{v_{\max}\tau,\ b_{i,k}\tau+\tfrac12a_{\max}\tau^2\}
+ \leq q_{i,k}-\epsilon_g.
+ \label{eq:single-displacement}
+\end{equation}
+The same argument for $\mathbf r_{ij}(t)=\bp_i(t)-\bp_j(t)$ uses relative speed and acceleration bounds $2v_{\max}$ and $2a_{\max}$:
+\begin{equation}
+ \norm{\mathbf r_{ij}(t)-\mathbf r_{ij,k}}_2
+ \leq\min\{2v_{\max}\tau,\ b_{ij,k}\tau+a_{\max}\tau^2\}.
+ \label{eq:relative-displacement}
+\end{equation}
+Substitution of $\tau\leq h/2$ yields the $h^2/8$ and $h^2/4$ terms in~\eqref{eq:padding} and~\eqref{eq:relativepadding}. By the triangle inequality, nodal clearance enlarged by the corresponding padding is sufficient to preserve the required continuous-time clearance over the neighboring half intervals. This conclusion applies to kinematically consistent motion satisfying the stated limits. Relaxed candidates pass through the reconstruction and acceptance stages in Section~\ref{sec:liom}.
+
+Relative boxes are unnecessary when the corresponding STCs already separate all possible positions. Define
+\begin{equation}
+ \mathbf g_{ij,k}=\max\{\underline{\boldsymbol\gamma}_{i,k}-\overline{\boldsymbol\gamma}_{j,k},\,
+ \underline{\boldsymbol\gamma}_{j,k}-\overline{\boldsymbol\gamma}_{i,k},\,\mathbf0\}.
+ \label{eq:screen}
+\end{equation}
+Only pair--node triples with $\norm{\mathbf g_{ij,k}}_2<R_{ij,k}$ belong to the active set $\mathcal A$. The minimum distance between the two spatial boxes is exactly $\norm{\mathbf g_{ij,k}}_2$. A discarded pair cannot violate the protected nodal distance anywhere within those boxes. The same screening rule is used for hard-box and hard-plane comparisons. Every pair remains in final continuous-interval validation.
+
+For each active triple, a box $\mathcal R_{ij,k}=[\underline{\boldsymbol\eta}_{ij,k},\overline{\boldsymbol\eta}_{ij,k}]$ is grown around the reference relative position, subject to
+\begin{equation}
+ \norm{\max\{\underline{\boldsymbol\eta}_{ij,k},-\overline{\boldsymbol\eta}_{ij,k},\mathbf0\}}_2
+ \geq R_{ij,k}.
+ \label{eq:relativebox}
+\end{equation}
+The left side is the exact minimum Euclidean distance from the origin to the box. Thus every point in the unrelaxed relative box lies outside the protected sphere. The relative box grows through the same six-face procedure, with step $\Delta_c$ and expansion limit $\ell_r$. Each proposed face movement is accepted only while~\eqref{eq:relativebox} holds. A seed inside the protected sphere is first displaced radially beyond its boundary by a small guard distance. For coincident seeds, the direction is obtained from the assigned start--goal geometry. Figure~\ref{fig:corridor}(b) shows the construction in relative-position space.
+\begin{figure}[htbp]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\resizebox{\fulllength}{!}{\input{diagrams/corridor_geometry}}
+\caption{Six-face corridor growth. (a) A spatial box expands from a reference seed; each face stops at an inflated obstacle, the inset workspace, or its expansion limit. (b) A relative box expands while remaining outside the protected sphere. The arrows denote independent growth along the positive and negative coordinate directions.\label{fig:corridor}}
+\end{adjustwidth}
+\end{figure}
+
+\subsection{Slackened Relative Bounds}
+Independent spatial and relative boxes can conflict. One nonnegative scalar $\delta_{ij,k}$ therefore relaxes all three relative coordinates of each active triple:
+\begin{equation}
+ \underline{\boldsymbol\eta}_{ij,k}-\delta_{ij,k}\one
+ \leq\bp_{i,k}-\bp_{j,k}
+ \leq\overline{\boldsymbol\eta}_{ij,k}+\delta_{ij,k}\one,
+ \qquad\delta_{ij,k}\geq0.
+ \label{eq:relativeSlack}
+\end{equation}
+The scalar slack, measured in length units, quantifies compatibility with the selected relative box. A positive value can occur even when the UAVs remain physically separated, since the box is conservative. At zero slack, active pairs satisfy the protected nodal-distance condition through~\eqref{eq:relativebox}, and screened pairs are separated by their spatial boxes. The final integrated motion is checked against the original physical clearance conditions.

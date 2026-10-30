@@ -1,0 +1,1740 @@
+{
+  "ma57_rerun_attempts": 20,
+  "entry_budget_attempts": 30,
+  "selected_external_attempts": 50,
+  "same_inputs_verified": true,
+  "only_entry_budget_varies": true,
+  "ma57_nonlinear_verified": true,
+  "all_qps_osqp": true,
+  "accepted_physical_checks_verified": true,
+  "recommended_entry_seconds": 3,
+  "archived_comparison_entry_seconds": 1,
+  "external": [
+    {
+      "Case": "C01",
+      "Method": "adaptive",
+      "N": "3",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.7196833",
+      "CPU": "1.5",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.135613172241219",
+      "source": "results/external_20261031_formal/C01_adaptive.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C01",
+      "Method": "rsc_iter",
+      "N": "3",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "0.8959429",
+      "CPU": "1.1875",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.135613172241219",
+      "source": "results/external_20261031_formal/C01_rsc_iter.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C01",
+      "Method": "asco",
+      "N": "3",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "5.253392",
+      "CPU": "4.453125",
+      "Solves": "2",
+      "Status": "ACCEPTED",
+      "Cost": "0.128158620099818",
+      "source": "results/external_ma57_20261031_formal/C01_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C01",
+      "Method": "nlp",
+      "N": "3",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "2.613913",
+      "CPU": "2.53125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.128158733743057",
+      "source": "results/external_ma57_20261031_formal/C01_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C01",
+      "Method": "scp",
+      "N": "3",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.770355",
+      "CPU": "2.640625",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.128479557011527",
+      "source": "results/external_20261031_verified/C01_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C03",
+      "Method": "adaptive",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.5083483",
+      "CPU": "3.09375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.365522815438796",
+      "source": "results/external_20261031_formal/C03_adaptive.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C03",
+      "Method": "rsc_iter",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.4179928",
+      "CPU": "3.109375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.365522815438796",
+      "source": "results/external_20261031_formal/C03_rsc_iter.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C03",
+      "Method": "asco",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "3.5016868",
+      "CPU": "4.359375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.222869999034154",
+      "source": "results/external_ma57_20261031_formal/C03_asco.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C03",
+      "Method": "nlp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "29.0545408",
+      "CPU": "29.4375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.223508881557022",
+      "source": "results/external_ma57_20261031_formal/C03_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C03",
+      "Method": "scp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "3.267694",
+      "CPU": "5.515625",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.230778779238699",
+      "source": "results/external_20261031_verified/C03_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C05",
+      "Method": "adaptive",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "3.1364542",
+      "CPU": "3.984375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.370763541540672",
+      "source": "results/external_20261031_formal/C05_adaptive.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C05",
+      "Method": "rsc_iter",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "3.3837951",
+      "CPU": "3.8125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.370763541540672",
+      "source": "results/external_20261031_formal/C05_rsc_iter.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C05",
+      "Method": "asco",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "16.3345599",
+      "CPU": "15.6875",
+      "Solves": "4",
+      "Status": "ACCEPTED",
+      "Cost": "0.224540541536463",
+      "source": "results/external_ma57_20261031_formal/C05_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt",
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Solve_Succeeded",
+        "Solve_Succeeded",
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C05",
+      "Method": "nlp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "33.5801033",
+      "CPU": "31.3125",
+      "Solves": "1",
+      "Status": "ACCEPTED_OVER_BUDGET",
+      "Cost": "0.228102132325024",
+      "source": "results/external_ma57_20261031_formal/C05_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C05",
+      "Method": "scp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "5.4735826",
+      "CPU": "5.765625",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.238685947187956",
+      "source": "results/external_20261031_verified/C05_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C25",
+      "Method": "adaptive",
+      "N": "7",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.2900403",
+      "CPU": "1.828125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.347740941719835",
+      "source": "results/external_20261031_formal/C25_adaptive.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C25",
+      "Method": "rsc_iter",
+      "N": "7",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.2277267",
+      "CPU": "1.734375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.347740941719835",
+      "source": "results/external_20261031_formal/C25_rsc_iter.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C25",
+      "Method": "asco",
+      "N": "7",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "21.3549865",
+      "CPU": "20.25",
+      "Solves": "5",
+      "Status": "ACCEPTED",
+      "Cost": "0.305234777812144",
+      "source": "results/external_ma57_20261031_formal/C25_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt",
+        "ipopt",
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Solve_Succeeded",
+        "Solve_Succeeded",
+        "Solve_Succeeded",
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C25",
+      "Method": "nlp",
+      "N": "7",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "9.3295933",
+      "CPU": "9.203125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.303997797018181",
+      "source": "results/external_ma57_20261031_formal/C25_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C25",
+      "Method": "scp",
+      "N": "7",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "12.5194263",
+      "CPU": "12.890625",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.309789465803863",
+      "source": "results/external_20261031_verified/C25_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C27",
+      "Method": "adaptive",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "24.3504346",
+      "CPU": "27.53125",
+      "Solves": "6",
+      "Status": "ACCEPTED",
+      "Cost": "10.6371912707377",
+      "source": "results/external_20261031_formal/C27_adaptive.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "solved inaccurate",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C27",
+      "Method": "rsc_iter",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "7.5492394",
+      "CPU": "8.90625",
+      "Solves": "2",
+      "Status": "ACCEPTED",
+      "Cost": "0.593670596627454",
+      "source": "results/external_20261031_formal/C27_rsc_iter.mat",
+      "backends": [
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C27",
+      "Method": "asco",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "8.61031",
+      "CPU": "8.03125",
+      "Solves": "2",
+      "Status": "ACCEPTED",
+      "Cost": "0.225127563131775",
+      "source": "results/external_ma57_20261031_formal/C27_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C27",
+      "Method": "nlp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "27.7942875",
+      "CPU": "25.859375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.225141894096112",
+      "source": "results/external_ma57_20261031_formal/C27_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C27",
+      "Method": "scp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "5.4142548",
+      "CPU": "5.703125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.252827598649334",
+      "source": "results/external_20261031_verified/C27_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C29",
+      "Method": "adaptive",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "19.5439964",
+      "CPU": "22.703125",
+      "Solves": "5",
+      "Status": "ACCEPTED",
+      "Cost": "10.5162102217323",
+      "source": "results/external_20261031_formal/C29_adaptive.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C29",
+      "Method": "rsc_iter",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "4.0745242",
+      "CPU": "4.78125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "2.28850610243927",
+      "source": "results/external_20261031_formal/C29_rsc_iter.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "C29",
+      "Method": "asco",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "15.0584876",
+      "CPU": "14.15625",
+      "Solves": "3",
+      "Status": "ACCEPTED",
+      "Cost": "0.235564890603287",
+      "source": "results/external_ma57_20261031_formal/C29_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Solve_Succeeded",
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C29",
+      "Method": "nlp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "27.1590868",
+      "CPU": "26.09375",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.240899078769511",
+      "source": "results/external_ma57_20261031_formal/C29_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "C29",
+      "Method": "scp",
+      "N": "5",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "10.3230333",
+      "CPU": "9.78125",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "0.384109087089122",
+      "source": "results/external_20261031_verified/C29_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "W6102",
+      "Method": "adaptive",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "26.3647404",
+      "CPU": "33.765625",
+      "Solves": "5",
+      "Status": "ACCEPTED",
+      "Cost": "11.1460164545185",
+      "source": "results/external_20261031_formal/W6102_adaptive.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "W6102",
+      "Method": "rsc_iter",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "25.1390018",
+      "CPU": "30.65625",
+      "Solves": "4",
+      "Status": "ACCEPTED",
+      "Cost": "1.15507539935594",
+      "source": "results/external_20261031_formal/W6102_rsc_iter.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "primal infeasible inaccurate",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "W6102",
+      "Method": "asco",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "33.7206202",
+      "CPU": "36.40625",
+      "Solves": "3",
+      "Status": "WALL_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/W6102_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Maximum_CpuTime_Exceeded",
+        "Maximum_CpuTime_Exceeded"
+      ]
+    },
+    {
+      "Case": "W6102",
+      "Method": "nlp",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "47.1002282",
+      "CPU": "49.421875",
+      "Solves": "1",
+      "Status": "NOT_ACCEPTED:BUILD_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/W6102_nlp.mat",
+      "backends": [
+        "none"
+      ],
+      "statuses": [
+        "BUILD_BUDGET"
+      ]
+    },
+    {
+      "Case": "W6102",
+      "Method": "scp",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "28.4115095",
+      "CPU": "29.90625",
+      "Solves": "1",
+      "Status": "NOT_ACCEPTED:primal infeasible",
+      "Cost": "NaN",
+      "source": "results/external_20261031_verified/W6102_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "primal infeasible"
+      ]
+    },
+    {
+      "Case": "W7202",
+      "Method": "adaptive",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "31.9153794",
+      "CPU": "38.21875",
+      "Solves": "7",
+      "Status": "ACCEPTED_OVER_BUDGET",
+      "Cost": "12.3581390223382",
+      "source": "results/external_20261031_formal/W7202_adaptive.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "solved inaccurate",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "solved inaccurate",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "W7202",
+      "Method": "rsc_iter",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.0685054",
+      "CPU": "33.40625",
+      "Solves": "5",
+      "Status": "BUDGET_EXHAUSTED",
+      "Cost": "NaN",
+      "source": "results/external_20261031_formal/W7202_rsc_iter.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "primal infeasible inaccurate",
+        "primal infeasible inaccurate",
+        "primal infeasible inaccurate",
+        "primal infeasible inaccurate",
+        "run time limit reached"
+      ]
+    },
+    {
+      "Case": "W7202",
+      "Method": "asco",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "31.4990008",
+      "CPU": "32.3125",
+      "Solves": "5",
+      "Status": "WALL_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/W7202_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt",
+        "ipopt",
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Solve_Succeeded",
+        "Infeasible_Problem_Detected",
+        "Solve_Succeeded",
+        "Infeasible_Problem_Detected",
+        "Solve_Succeeded"
+      ]
+    },
+    {
+      "Case": "W7202",
+      "Method": "nlp",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "31.3604269",
+      "CPU": "33.171875",
+      "Solves": "1",
+      "Status": "NOT_ACCEPTED:BUILD_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/W7202_nlp.mat",
+      "backends": [
+        "none"
+      ],
+      "statuses": [
+        "BUILD_BUDGET"
+      ]
+    },
+    {
+      "Case": "W7202",
+      "Method": "scp",
+      "N": "5",
+      "K": "120",
+      "Horizon": "24",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.0458866",
+      "CPU": "29.84375",
+      "Solves": "1",
+      "Status": "NOT_ACCEPTED:run time limit reached",
+      "Cost": "NaN",
+      "source": "results/external_20261031_verified/W7202_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached"
+      ]
+    },
+    {
+      "Case": "N15",
+      "Method": "adaptive",
+      "N": "15",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "27.4852637",
+      "CPU": "32.609375",
+      "Solves": "6",
+      "Status": "ACCEPTED",
+      "Cost": "38.2153517672855",
+      "source": "results/external_20261031_formal/N15_adaptive.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "N15",
+      "Method": "rsc_iter",
+      "N": "15",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "29.9697513",
+      "CPU": "32.375",
+      "Solves": "6",
+      "Status": "ACCEPTED",
+      "Cost": "0.99251160530968",
+      "source": "results/external_20261031_formal/N15_rsc_iter.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "N15",
+      "Method": "asco",
+      "N": "15",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "34.0735585",
+      "CPU": "32.703125",
+      "Solves": "4",
+      "Status": "WALL_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/N15_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt",
+        "osqp",
+        "none"
+      ],
+      "statuses": [
+        "Maximum_CpuTime_Exceeded",
+        "Maximum_CpuTime_Exceeded",
+        "feasible candidate",
+        "BUILD_BUDGET"
+      ]
+    },
+    {
+      "Case": "N15",
+      "Method": "nlp",
+      "N": "15",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "59.3398916",
+      "CPU": "57.90625",
+      "Solves": "1",
+      "Status": "ACCEPTED_OVER_BUDGET",
+      "Cost": "0.87807500747794",
+      "source": "results/external_ma57_20261031_formal/N15_nlp.mat",
+      "backends": [
+        "ipopt"
+      ],
+      "statuses": [
+        "Maximum_CpuTime_Exceeded"
+      ]
+    },
+    {
+      "Case": "N15",
+      "Method": "scp",
+      "N": "15",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "19.9082626",
+      "CPU": "18.0625",
+      "Solves": "1",
+      "Status": "ACCEPTED",
+      "Cost": "1.26171385860454",
+      "source": "results/external_20261031_verified/N15_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "N20",
+      "Method": "adaptive",
+      "N": "20",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "30.116389",
+      "CPU": "35.09375",
+      "Solves": "6",
+      "Status": "ACCEPTED_OVER_BUDGET",
+      "Cost": "66.5515672874097",
+      "source": "results/external_20261031_formal/N20_adaptive.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "N20",
+      "Method": "rsc_iter",
+      "N": "20",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "27.6983647",
+      "CPU": "30.109375",
+      "Solves": "5",
+      "Status": "ACCEPTED",
+      "Cost": "1.41031481045417",
+      "source": "results/external_20261031_formal/N20_rsc_iter.mat",
+      "backends": [
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp",
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "run time limit reached",
+        "feasible candidate"
+      ]
+    },
+    {
+      "Case": "N20",
+      "Method": "asco",
+      "N": "20",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "31.2653921",
+      "CPU": "30.140625",
+      "Solves": "2",
+      "Status": "WALL_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/N20_asco.mat",
+      "backends": [
+        "ipopt",
+        "ipopt"
+      ],
+      "statuses": [
+        "Maximum_CpuTime_Exceeded",
+        "Maximum_CpuTime_Exceeded"
+      ]
+    },
+    {
+      "Case": "N20",
+      "Method": "nlp",
+      "N": "20",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "106.7521233",
+      "CPU": "99.53125",
+      "Solves": "1",
+      "Status": "NOT_ACCEPTED:BUILD_BUDGET",
+      "Cost": "NaN",
+      "source": "results/external_ma57_20261031_formal/N20_nlp.mat",
+      "backends": [
+        "none"
+      ],
+      "statuses": [
+        "BUILD_BUDGET"
+      ]
+    },
+    {
+      "Case": "N20",
+      "Method": "scp",
+      "N": "20",
+      "K": "60",
+      "Horizon": "12",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.0637907",
+      "CPU": "28.09375",
+      "Solves": "1",
+      "Status": "NOT_ACCEPTED:run time limit reached",
+      "Cost": "NaN",
+      "source": "results/external_20261031_verified/N20_scp.mat",
+      "backends": [
+        "osqp"
+      ],
+      "statuses": [
+        "run time limit reached"
+      ]
+    }
+  ],
+  "entry": [
+    {
+      "Case": "C01",
+      "EntryBudget": "1",
+      "N": "3",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.7533739",
+      "CPU": "2.046875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.0781973999983165",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C01",
+      "EntryBudget": "3",
+      "N": "3",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "0.9497737",
+      "CPU": "1.421875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.082483099977253",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C01",
+      "EntryBudget": "5",
+      "N": "3",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "0.8819467",
+      "CPU": "1.171875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.0737306000082754",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C03",
+      "EntryBudget": "3",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.4412628",
+      "CPU": "3.171875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.318536600010702",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C03",
+      "EntryBudget": "5",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.4633056",
+      "CPU": "3.71875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.345183600002201",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C03",
+      "EntryBudget": "1",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.3514937",
+      "CPU": "2.0625",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.335614800016629",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C05",
+      "EntryBudget": "5",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "2.8886163",
+      "CPU": "3.515625",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.774461399996653",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C05",
+      "EntryBudget": "1",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "2.8372346",
+      "CPU": "3.25",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.760960900021018",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C05",
+      "EntryBudget": "3",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "2.913237",
+      "CPU": "3.265625",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.801085100014461",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C25",
+      "EntryBudget": "1",
+      "N": "7",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.2027613",
+      "CPU": "1.6875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.473541799990926",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C25",
+      "EntryBudget": "3",
+      "N": "7",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.1775655",
+      "CPU": "1.875",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.467490199982421",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C25",
+      "EntryBudget": "5",
+      "N": "7",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "1.1668709",
+      "CPU": "1.59375",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "0.473361300013494",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C27",
+      "EntryBudget": "3",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "26.1499473",
+      "CPU": "31.09375",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "2.97424370000954",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C27",
+      "EntryBudget": "5",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "28.2865373",
+      "CPU": "33.171875",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "4.97123029999784",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C27",
+      "EntryBudget": "1",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "24.0752435",
+      "CPU": "30.6875",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "0.975694199994905",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C29",
+      "EntryBudget": "5",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "3.6542269",
+      "CPU": "4.3125",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "1.39870920000249",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C29",
+      "EntryBudget": "1",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "19.2693739",
+      "CPU": "23.015625",
+      "QPs": "5",
+      "Rounds": "4",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "0.96666920001735",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "C29",
+      "EntryBudget": "3",
+      "N": "5",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "3.6255338",
+      "CPU": "4.375",
+      "QPs": "1",
+      "Rounds": "1",
+      "EntryAccepted": "1",
+      "EnteredRecovery": "0",
+      "ReturnedPhase": "rsc",
+      "FirstSolveSeconds": "1.38025970000308",
+      "FirstStatus": "feasible candidate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "W6102",
+      "EntryBudget": "1",
+      "N": "5",
+      "K": "120",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "28.6991977",
+      "CPU": "37.015625",
+      "QPs": "5",
+      "Rounds": "4",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "0.949477799993474",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "W6102",
+      "EntryBudget": "3",
+      "N": "5",
+      "K": "120",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "29.9955746",
+      "CPU": "38.640625",
+      "QPs": "5",
+      "Rounds": "4",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "2.95433099998627",
+      "FirstStatus": "primal infeasible inaccurate",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "W6102",
+      "EntryBudget": "5",
+      "N": "5",
+      "K": "120",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "31.3272902",
+      "CPU": "40.015625",
+      "QPs": "5",
+      "Rounds": "4",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "4.12209499999881",
+      "FirstStatus": "primal infeasible",
+      "Status": "ACCEPTED_OVER_BUDGET"
+    },
+    {
+      "Case": "W7202",
+      "EntryBudget": "3",
+      "N": "5",
+      "K": "120",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.0710008",
+      "CPU": "36.890625",
+      "QPs": "5",
+      "Rounds": "4",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "none",
+      "FirstSolveSeconds": "2.954027699976",
+      "FirstStatus": "primal infeasible inaccurate",
+      "Status": "BUDGET_EXHAUSTED"
+    },
+    {
+      "Case": "W7202",
+      "EntryBudget": "5",
+      "N": "5",
+      "K": "120",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.0364006",
+      "CPU": "36.59375",
+      "QPs": "5",
+      "Rounds": "4",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "none",
+      "FirstSolveSeconds": "4.92803909999202",
+      "FirstStatus": "primal infeasible",
+      "Status": "BUDGET_EXHAUSTED"
+    },
+    {
+      "Case": "W7202",
+      "EntryBudget": "1",
+      "N": "5",
+      "K": "120",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "30.4819212",
+      "CPU": "37.28125",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "0.954488500021398",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED_OVER_BUDGET"
+    },
+    {
+      "Case": "N15",
+      "EntryBudget": "5",
+      "N": "15",
+      "K": "60",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.6571812",
+      "CPU": "34.5625",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "none",
+      "FirstSolveSeconds": "4.66672539999126",
+      "FirstStatus": "run time limit reached",
+      "Status": "BUDGET_EXHAUSTED"
+    },
+    {
+      "Case": "N15",
+      "EntryBudget": "1",
+      "N": "15",
+      "K": "60",
+      "Accepted": "0",
+      "WithinBudget": "0",
+      "Wall": "30.0751319",
+      "CPU": "35.78125",
+      "QPs": "7",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "none",
+      "FirstSolveSeconds": "0.804075199994259",
+      "FirstStatus": "run time limit reached",
+      "Status": "BUDGET_EXHAUSTED"
+    },
+    {
+      "Case": "N15",
+      "EntryBudget": "3",
+      "N": "15",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "29.0936949",
+      "CPU": "35.078125",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "2.66139459999977",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "N20",
+      "EntryBudget": "1",
+      "N": "20",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "28.3655958",
+      "CPU": "34.3125",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "0.275547400000505",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "N20",
+      "EntryBudget": "3",
+      "N": "20",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "1",
+      "Wall": "27.0388786",
+      "CPU": "32.796875",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "2.27250300001469",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED"
+    },
+    {
+      "Case": "N20",
+      "EntryBudget": "5",
+      "N": "20",
+      "K": "60",
+      "Accepted": "1",
+      "WithinBudget": "0",
+      "Wall": "30.3485246",
+      "CPU": "36.921875",
+      "QPs": "6",
+      "Rounds": "5",
+      "EntryAccepted": "0",
+      "EnteredRecovery": "1",
+      "ReturnedPhase": "soft",
+      "FirstSolveSeconds": "4.33203000001959",
+      "FirstStatus": "run time limit reached",
+      "Status": "ACCEPTED_OVER_BUDGET"
+    }
+  ]
+}

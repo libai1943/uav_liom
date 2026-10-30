@@ -1,0 +1,18 @@
+[
+  {
+    "path": "comparisons_ma57_20261031/+external_ma57/run.m",
+    "sha256": "531e5cd5f0818f0fcfa084b748524bb619bd1aa0935d05c3a61745ae9d51c0f3"
+  },
+  {
+    "path": "comparisons_ma57_20261031/+external_ma57/subproblem.m",
+    "sha256": "6c2c3ac801d7a0fb4967ba57e76b152cbb2c1d295fb8c8015d3ddacabebc35da"
+  },
+  {
+    "path": "comparisons_ma57_20261031/Ma57Selftest.m",
+    "sha256": "e984279e9249744b9cae60977ac1f62186dab98205737de0a6f31f80e09651dc"
+  },
+  {
+    "path": "comparisons_ma57_20261031/Ma57Study.m",
+    "sha256": "fc723dfa7a1be1692a4c8e1945240b4b7bf45d56556c23b24ff5bfab73390716"
+  }
+]

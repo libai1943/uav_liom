@@ -1,0 +1,1019 @@
+{
+  "created": "2026-10-31T03:23:11",
+  "comments": [
+    "R1.1 --- Team-size scalability",
+    "R1.2 --- Advantage over hard RSC",
+    "R1.3 --- Parameter sensitivity",
+    "R1.4 --- Length and consistency",
+    "R1.5 --- Control interface",
+    "R2.1 --- Completion time",
+    "R2.2 --- Cartesian limits",
+    "R2.3 --- Collision notation",
+    "R2.4 --- Objective",
+    "R2.5 --- Reachable speed",
+    "R2.6 --- Complexity",
+    "R2.7 --- Practical cooperation",
+    "R2.8 --- UAV type and parameters",
+    "R3.M1 --- Relation to submitted references [20] and [31]",
+    "R3.M2 --- Physical difficulty",
+    "R3.M3 --- Equal reconstruction opportunities",
+    "R3.M4 --- Hard-first strategy and exact penalties",
+    "R3.M5 --- Reconstructed-motion acceptance",
+    "R3.M6 --- Motion-envelope conservatism",
+    "R3.M7 --- Theory and termination statistics",
+    "R3.M8 --- QP solver and timing decomposition",
+    "R3.M9 --- Physical realism",
+    "R3.M10 --- Initializer effects",
+    "R3.m1 --- Quantitative abstract",
+    "R3.m2 --- Plain language and terminology",
+    "R3.m3 --- Units and $w_a$",
+    "R3.m4 --- Reference resampling",
+    "R3.m5 --- Scalar timing failures",
+    "R3.m6 --- Trajectory-panel size",
+    "R3.m7 --- Timing-marker overlap",
+    "R3.m8 --- Grayscale readability",
+    "R3.m9 --- Outer iterations",
+    "R3.m10 --- Reproducibility"
+  ],
+  "total": 33,
+  "abstract_quantification": "Team size 20 in abstract; detailed outcomes/timings in results and response, per author preference.",
+  "actual_tracking": "Software-only MuJoCo, no flight-control hardware.",
+  "new_evidence": "20 ma57 reruns, 30 controlled entry-budget attempts; same inputs audited.",
+  "configuration": "3 s recommended; frozen benchmark records explicitly labeled 1 s.",
+  "bibliography": {
+    "reference_count": 39,
+    "identical_bbl_text": true,
+    "identical_citation_numbering": true,
+    "background_parallel_stitching_reference": 5,
+    "citation_map": {
+      "chung2018": "1",
+      "kushleyev2012": "2",
+      "preiss2017": "3",
+      "zhong2025rvo": "4",
+      "li2022stitching": "5",
+      "liu2025escp": "6",
+      "wu2025conflict": "7",
+      "zhao2025exploration": "8",
+      "li2025coverage": "9",
+      "hoenig2018": "10",
+      "turpin2014": "11",
+      "luis2019": "12",
+      "luis2020": "13",
+      "zhou2017bvc": "14",
+      "schiz2025communication": "15",
+      "goncalves2024": "16",
+      "mestre2024": "17",
+      "grover2023": "18",
+      "jankovic2024": "19",
+      "chandra2025": "20",
+      "park2021": "21",
+      "senbaslar2023": "22",
+      "zhou2021ego": "23",
+      "tordesillas2022": "24",
+      "kondo2024": "25",
+      "kondo2025": "26",
+      "park2025": "27",
+      "li2021asco": "28",
+      "li2023priority": "29",
+      "augugliaro2012": "30",
+      "li2022liom": "31",
+      "bu2025": "32",
+      "huang2022srn": "33",
+      "hart1968": "34",
+      "helbing1995": "35",
+      "stellato2020osqp": "36",
+      "andersson2019": "37",
+      "wachter2006": "38",
+      "todorov2012mujoco": "39"
+    }
+  },
+  "pdf_pages": {
+    "clean": 29,
+    "marked": 48,
+    "response": 10
+  },
+  "qa": {
+    "clean": {
+      "pdf": "D:\\UAV_Cooperative_Planning_Revision_20261029\\paper\\revision_ma57_20261031\\clean\\manuscript.pdf",
+      "pages": 29,
+      "render_stderr": "",
+      "page_audit": [
+        {
+          "page": 1,
+          "words": 440,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 2,
+          "words": 548,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 3,
+          "words": 564,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 4,
+          "words": 536,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 5,
+          "words": 429,
+          "headings": [
+            "Table 1. Representative formulations and their response to difﬁcult local planning problems. The common completion deadline"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 6,
+          "words": 431,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 7,
+          "words": 457,
+          "headings": [
+            "Figure 1. Fixed-horizon cooperative trajectory optimization. The hard entry includes reconstruction and physical checking. Relaxed"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 8,
+          "words": 446,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 9,
+          "words": 335,
+          "headings": [
+            "Figure 2. Six-face corridor growth. (a) A spatial box expands from a reference seed; each face stops at an inﬂated obstacle, the inset"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 10,
+          "words": 536,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 11,
+          "words": 459,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 12,
+          "words": 473,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 13,
+          "words": 514,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 14,
+          "words": 472,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 15,
+          "words": 482,
+          "headings": [
+            "Algorithm 1: LIOM with hard-QP entry and acceptance-driven recovery",
+            "7. Simulation Setup, Results, and Discussion",
+            "7.1. Tasks and Evaluation Protocol"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 16,
+          "words": 579,
+          "headings": [
+            "7.2. Physical, Numerical, and Implementation Settings",
+            "Table 2. Common settings. Linear-row tolerances use the corresponding native SI units. Final acceptance retains the physical"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 17,
+          "words": 560,
+          "headings": [
+            "7.3. Accepted Motion and Main-Benchmark Performance",
+            "Table 3 reports computation over the main benchmark. Proposed LIOM has mean",
+            "Table 3. Computation on the 30-scene main benchmark with the original 1 s LIOM hard entry and three executions per method and",
+            "8.66",
+            "7.83",
+            "8.84",
+            "8.42",
+            "7.4. Recovery in Winding Counterﬂow Tasks"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 18,
+          "words": 248,
+          "headings": [
+            "Table 4. Accepted proposed-method motions in the ﬁrst main-benchmark repetition (29 scenes). In-",
+            "8.882e-16",
+            "Figure 3. Representative accepted cooperative motions with metric axes. Starts are circles, ﬁxed goals are triangles, and colors identify"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 19,
+          "words": 356,
+          "headings": [
+            "Figure 4. Main-benchmark computation. Per-scene median wall times use separated method positions and a logarithmic axis. Crosses",
+            "Figure 5. Planar projection and individual UAV speed and acceleration histories for a representative accepted motion. Colors identify"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 20,
+          "words": 375,
+          "headings": [
+            "Figure 6. Recovery in a winding counterﬂow task. Colors identify UAVs. The recovery quantities are divided by their acceptance",
+            "Figure 7 varies physical opening width, team size, and prescribed ﬂight time around",
+            "7.5. Task-Matched Nonlinear and Sequential Convex Comparisons"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 21,
+          "words": 522,
+          "headings": [
+            "Figure 7. Exploratory physical-parameter map around the same winding layout. Letters supplement color: B, both accepted; L,",
+            "Table 5 reports the ma57 comparison. LIOM completes C01, C03, C05, and C25 in"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 22,
+          "words": 431,
+          "headings": [
+            "Table 5. Task-matched planning times in seconds, including recorded initialization. LIOM uses the original 1 s hard entry in this",
+            "7.55",
+            "8.61",
+            "7.6. Physical Congestion and Computational Scaling",
+            "Figure 8. Computation under physical congestion with ﬁxed corridor-growth settings. Panels vary crossing-team size, passage width,"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 23,
+          "words": 449,
+          "headings": [
+            "Table 6. Team/grid scaling over two realizations per setting. Mean wall times include all attempts. Variables and rows are the",
+            "Figure 9. Team/grid scaling and planning-time components. Crosses mark team–grid groups with at least one attempt not accepted",
+            "7.7. Mechanism and Parameter Studies"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 24,
+          "words": 509,
+          "headings": [
+            "Table 7. Hard-entry budget ablation. Each cell gives total planning time in seconds and QP calls. All three settings share the recorded",
+            "Table 8. Soft-loop acceptance feedback and motion-envelope studies on six scenes. Feedback com-",
+            "Table 9. Reference geometry and later guide availability crossed on six anchor scenes. Mean times and rounds include all attempts;",
+            "7.17",
+            "7.17",
+            "7.17"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 25,
+          "words": 446,
+          "headings": [
+            "Table 10. One-factor sensitivity on six anchor scenes, all accepted at the tested settings. Columns give mean wall time after halving",
+            "Table 11. OSQP audit on identical matrices from three anchor scenes. Readiness stopping is compared with ordinary termination",
+            "8.7e-04",
+            "7.8. Rigid-Body Tracking in a Physics Simulator"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 26,
+          "words": 280,
+          "headings": [
+            "Figure 10. Rigid-body execution of a planned cooperative motion: reference and simulated positions, tracking error, and surface",
+            "Table 12. MuJoCo tracking over the prescribed ﬂight interval. Terminal error is measured at Tf , before the separately logged settling"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 27,
+          "words": 547,
+          "headings": [
+            "8. Conclusion"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 28,
+          "words": 757,
+          "headings": [
+            "7.",
+            "8."
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 29,
+          "words": 393,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        }
+      ],
+      "sha256": "fd904fda131bb4843715f0ae379370c092aa5c2d4f9bb7239e502698897f7086",
+      "all_pages_visually_reviewed": true
+    },
+    "marked": {
+      "pdf": "D:\\UAV_Cooperative_Planning_Revision_20261029\\paper\\revision_ma57_20261031\\marked\\manuscript.pdf",
+      "pages": 48,
+      "render_stderr": "",
+      "page_audit": [
+        {
+          "page": 1,
+          "words": 460,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 2,
+          "words": 537,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 3,
+          "words": 497,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 4,
+          "words": 549,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 5,
+          "words": 565,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 6,
+          "words": 541,
+          "headings": [
+            "Table Li et al. 1[31] compares the decision scope, timing assumptions, and feasibility"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 7,
+          "words": 387,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 8,
+          "words": 419,
+          "headings": [
+            "Table 1. Representative formulations and their response to difﬁcult local planning problems. The common completion deadline"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 9,
+          "words": 404,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 10,
+          "words": 403,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 11,
+          "words": 440,
+          "headings": [
+            "Figure 1. Fixed-horizon cooperative trajectory optimization. The hard entry includes reconstruction and physical checking. Relaxed"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 12,
+          "words": 360,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 13,
+          "words": 337,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 14,
+          "words": 349,
+          "headings": [
+            "Figure 2. Six-face corridor growth. (a) A spatial box expands from a reference seed; each face stops at an inﬂated obstacle, the inset"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 15,
+          "words": 524,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 16,
+          "words": 396,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 17,
+          "words": 475,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 18,
+          "words": 399,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 19,
+          "words": 449,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 20,
+          "words": 545,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 21,
+          "words": 239,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 22,
+          "words": 458,
+          "headings": [
+            "Algorithm 1: Deleted: LIOM for ﬁxed-horizon cooperative trajectory optimization"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 23,
+          "words": 422,
+          "headings": [
+            "Algorithm 1: LIOM with hard-QP entry and acceptance-driven recovery",
+            "7. Simulation Setup, Results, and Discussion",
+            "7.1. Tasks and Evaluation Protocol"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 24,
+          "words": 572,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 25,
+          "words": 577,
+          "headings": [
+            "7.2. Physical, Numerical, and Implementation Settings",
+            "Table 2 gives the common numerical settings.",
+            "Table 2. Common settings. Linear-row tolerances use the corresponding native SI units. Final acceptance retains the physical"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 26,
+          "words": 502,
+          "headings": [
+            "Figure 8"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 27,
+          "words": 514,
+          "headings": [
+            "7.3. Accepted Motion and Main-Benchmark Performance",
+            "Table 5 summarizes all 883 accepted runs across the ablations, computational",
+            "8.882 × 10−16",
+            "Table 3. Computation on the 30-scene main benchmark with the original 1 s LIOM hard entry and three executions per method and",
+            "8.66",
+            "7.83",
+            "8.84",
+            "8.42"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 28,
+          "words": 341,
+          "headings": [
+            "Table 4. Accepted proposed-method motions in the ﬁrst main-benchmark repetition (29 scenes).",
+            "8.882e-16",
+            "Figure 3 presents the cooperative trajectories for all 30 cases. Figure 4 enlarges the",
+            "Figure 3. Representative accepted cooperative motions with metric axes. Starts are circles, ﬁxed goals are triangles, and colors"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 29,
+          "words": 169,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 30,
+          "words": 404,
+          "headings": [
+            "Figure 4. Main-benchmark computation. Per-scene median wall times use separated method positions and a logarithmic axis.",
+            "7.4. Recovery in Winding Counterﬂow Tasks"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 31,
+          "words": 171,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 32,
+          "words": 497,
+          "headings": [
+            "Figure 5. Planar projection and individual UAV speed and acceleration histories for a representative accepted motion. Colors",
+            "Figure 8 precedes execution of that motion."
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 33,
+          "words": 285,
+          "headings": [
+            "7.5. Task-Matched Nonlinear and Sequential Convex Comparisons"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 34,
+          "words": 186,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 35,
+          "words": 283,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 36,
+          "words": 271,
+          "headings": [
+            "Figure 6. Recovery in a winding counterﬂow task. Colors identify UAVs. The recovery quantities are divided by their acceptance",
+            "Figure 7. Exploratory physical-parameter map around the same winding layout. Letters supplement color: B, both accepted; L,"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 37,
+          "words": 656,
+          "headings": [
+            "Table 6 shows that Proposed LIOM accepts all scenes at a mean CPU time of",
+            "8.61, 7.55, and 5.41 s. The ma57 direct-NLP solve also accepts C27, in 27.79 s. These results"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 38,
+          "words": 571,
+          "headings": [
+            "Table 5. Task-matched planning times in seconds, including recorded initialization. LIOM uses the original 1 s hard entry in this",
+            "7.55",
+            "8.61",
+            "7.6. Physical Congestion and Computational Scaling",
+            "Figure 9 relates measured computation to problem size and"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 39,
+          "words": 436,
+          "headings": [
+            "Figure 8. Computation under physical congestion with ﬁxed corridor-growth settings. Panels vary crossing-team size, passage",
+            "Table 6. Team/grid scaling over two realizations per setting. Mean wall times include all attempts. Variables and rows are the",
+            "7.7. Mechanism and Parameter Studies"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 40,
+          "words": 409,
+          "headings": [
+            "Figure 9. Team/grid scaling and planning-time components. Crosses mark team–grid groups with at least one attempt not accepted",
+            "Table 7. Hard-entry budget ablation. Each cell gives total planning time in seconds and QP calls. All three settings share the",
+            "Table 7 summarizes acceptance, and Figure 9 locates the recovered settings. In the"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 41,
+          "words": 398,
+          "headings": [
+            "Table 8. Soft-loop acceptance feedback and motion-envelope studies on six scenes. Feedback com-",
+            "Table 9. Reference geometry and later guide availability crossed on six anchor scenes. Mean times and rounds include all attempts;",
+            "7.17",
+            "7.17",
+            "7.17"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 42,
+          "words": 238,
+          "headings": [
+            "Table 10. One-factor sensitivity on six anchor scenes, all accepted at the tested settings. Columns give mean wall time after halving",
+            "Table 11. OSQP audit on identical matrices from three anchor scenes. Readiness stopping is compared with ordinary termination",
+            "8.7e-04"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 43,
+          "words": 323,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 44,
+          "words": 361,
+          "headings": [
+            "7.8. Rigid-Body Tracking in a Physics Simulator",
+            "Figure 10. Rigid-body execution of a planned cooperative motion: reference and simulated positions, tracking error, and surface"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 45,
+          "words": 500,
+          "headings": [
+            "8.51 s in the time sweep and 2.03 s in the box sweep.",
+            "Table 12. MuJoCo tracking over the prescribed ﬂight interval. Terminal error is measured at Tf , before the separately logged settling",
+            "8. Conclusion"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 46,
+          "words": 564,
+          "headings": [
+            "7.",
+            "8."
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 47,
+          "words": 776,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 48,
+          "words": 307,
+          "headings": [],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        }
+      ],
+      "sha256": "af7555564abad09fbc7df6d7b8c96b9fc41d61486559f5c66b828124a145fb3a",
+      "all_pages_visually_reviewed": true
+    },
+    "response": {
+      "pdf": "D:\\UAV_Cooperative_Planning_Revision_20261029\\paper\\revision_ma57_20261031\\response\\main.pdf",
+      "pages": 10,
+      "render_stderr": "",
+      "page_audit": [
+        {
+          "page": 1,
+          "words": 468,
+          "headings": [
+            "R1.1 — Team-size scalability",
+            "R1.2 — Advantage over hard RSC"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 2,
+          "words": 377,
+          "headings": [
+            "R1.3 — Parameter sensitivity",
+            "R1.4 — Length and consistency",
+            "R1.5 — Control interface"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 3,
+          "words": 298,
+          "headings": [
+            "R2.1 — Completion time",
+            "R2.2 — Cartesian limits",
+            "R2.3 — Collision notation",
+            "R2.4 — Objective",
+            "R2.5 — Reachable speed"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 4,
+          "words": 356,
+          "headings": [
+            "R2.6 — Complexity",
+            "R2.7 — Practical cooperation",
+            "R2.8 — UAV type and parameters",
+            "R3.M1 — Relation to submitted references [20] and [31]"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 5,
+          "words": 455,
+          "headings": [
+            "R3.M2 — Physical diﬃculty",
+            "R3.M3 — Equal reconstruction opportunities"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 6,
+          "words": 537,
+          "headings": [
+            "R3.M4 — Hard-ﬁrst strategy and exact penalties",
+            "8.42 s and 2.29 QP calls; the proposed entry policy averages 7.83 s and 2.46 calls.",
+            "Table 1: Hard-entry budget ablation. Each cell gives total planning time in seconds and QP calls.",
+            "R3.M5 — Reconstructed-motion acceptance"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 7,
+          "words": 377,
+          "headings": [
+            "R3.M6 — Motion-envelope conservatism",
+            "R3.M7 — Theory and termination statistics",
+            "R3.M8 — QP solver and timing decomposition"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 8,
+          "words": 333,
+          "headings": [
+            "R3.M9 — Physical realism",
+            "R3.M10 — Initializer eﬀects",
+            "R3.m1 — Quantitative abstract"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 9,
+          "words": 326,
+          "headings": [
+            "R3.m2 — Plain language and terminology",
+            "R3.m3 — Units and wa",
+            "R3.m4 — Reference resampling",
+            "R3.m5 — Scalar timing failures"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        },
+        {
+          "page": 10,
+          "words": 263,
+          "headings": [
+            "R3.m6 — Trajectory-panel size",
+            "R3.m7 — Timing-marker overlap",
+            "R3.m8 — Grayscale readability",
+            "R3.m9 — Outer iterations",
+            "R3.m10 — Reproducibility"
+          ],
+          "issues": [],
+          "outside_page": [],
+          "portrait": true
+        }
+      ],
+      "sha256": "ee0122045df96ababeb8cbc4be45afcf9a08a77c3c3beb0684c24fa16a832efd",
+      "all_pages_visually_reviewed": true
+    }
+  },
+  "recommended_smoke": {
+    "accepted": true,
+    "wall": 1.0773432,
+    "horizon": 12,
+    "file": "results/recommended_3s/single_20261031_031610176/result.mat"
+  }
+}

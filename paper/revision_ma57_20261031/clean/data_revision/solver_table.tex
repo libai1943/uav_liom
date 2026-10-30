@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{OSQP audit on identical matrices from three anchor scenes. Readiness stopping is compared with ordinary termination at two tolerances. The feasible-column criterion is maximum linear-row violation $\leq10^{-3}$; full trajectories still require physical acceptance.\label{tab:solver-new}}
+\centering\small
+\begin{tabular}{lrrrrr}\toprule
+QP & Termination & Row test & Max. violation & Time (s) & Iterations\\\midrule
+soft & Readiness & 3/3 & 5.2e-05 & 1.94 & 6,833\\
+soft & Standard ($10^{-6}$) & 3/3 & 5.2e-05 & 1.96 & 6,833\\
+soft & Standard ($10^{-7}$) & 3/3 & 1.4e-05 & 6.40 & 20,000\\
+hard & Readiness & 2/3 & 1.5e+10 & 1.64 & 5,808\\
+hard & Standard ($10^{-6}$) & 2/3 & 1.5e+10 & 4.10 & 13,767\\
+hard & Standard ($10^{-7}$) & 2/3 & 1.5e+10 & 4.93 & 16,308\\
+rsc & Readiness & 3/3 & 8.7e-04 & 0.45 & 1,400\\
+rsc & Standard ($10^{-6}$) & 3/3 & 1.6e-15 & 1.37 & 4,733\\
+rsc & Standard ($10^{-7}$) & 3/3 & 1.6e-15 & 2.80 & 9,283\\
+\bottomrule\end{tabular}
+\end{adjustwidth}
+\end{table}

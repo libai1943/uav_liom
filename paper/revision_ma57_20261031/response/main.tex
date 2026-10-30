@@ -1,0 +1,17 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,tabularx,xcolor,hyperref,enumitem,tcolorbox,needspace}
+\definecolor{RevisionBlue}{RGB}{0,76,153}
+\hypersetup{colorlinks=true,urlcolor=RevisionBlue,linkcolor=RevisionBlue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\newcounter{reviewcomment}
+\newcommand{\reviewitem}[3]{\Needspace{12\baselineskip}\stepcounter{reviewcomment}\subsection*{#1}\begin{tcolorbox}[colback=black!3,colframe=black!20,boxrule=.3pt]\textbf{Comment (condensed).} #2\end{tcolorbox}\textbf{Response.} #3}
+\begin{document}
+\begin{center}{\Large\bfseries Response to the Reviewers}\\[8pt]{\large Feasibility Recovery for Fixed-Horizon Multi-UAV Cooperative Flight Trajectory Optimization in High-Conflict Regions}\\[6pt]\emph{Electronics --- Major Revision}\end{center}
+We thank the reviewers for their detailed assessment. The revision changes the optimization implementation, adds controlled comparisons and physical-congestion tests, and clarifies the connection between numerical candidates and accepted flight trajectories. Additions in the marked manuscript are blue, deletions are red with strikethrough, and changed mathematical displays are framed. A clean manuscript accompanies the marked version. The experimental interpretation centers on verified conflict cases and the computational role of each recovery layer; complete task-level outcomes remain in the accompanying data.
+
+Reference numbers [20] and [31] in these responses refer to the submitted manuscript: Bu et al.'s cooperative corridor method and Li et al.'s lightweight iterative optimization method, respectively. The revised bibliography may assign different numbers.
+\input{responses}
+\end{document}

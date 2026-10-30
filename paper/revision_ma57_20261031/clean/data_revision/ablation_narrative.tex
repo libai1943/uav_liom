@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\caption{Soft-loop acceptance feedback and motion-envelope studies on six scenes. Feedback combines tolerance tightening with an exact-kinematics finish; its components are evaluated jointly.\label{tab:mechanism-new}}
+\centering\small
+\begin{tabular}{lrr}\toprule
+Variant & Wall (s) & QP calls\\\midrule
+Aggregate, no feedback & 1.12 & 1.33\\
+Aggregate + feedback & 1.12 & 1.33\\
+Normalized, no feedback & 1.07 & 1.17\\
+Normalized + feedback & 1.07 & 1.17\\
+cube motion envelope & 1.03 & 1.33\\
+hull14 motion envelope & 1.08 & 1.17\\
+hull26 motion envelope & 1.16 & 1.17\\
+\bottomrule\end{tabular}
+\end{table}
+The hard-iterative comparison holds reconstruction opportunities fixed. The hard-entry ablation compares proposed LIOM with Soft LIOM. The acceptance-feedback study examines how rejected reconstructed motions affect subsequent computation; it also records rejection reasons and additional exact-QP calls.
+
+
+
+% BEGIN FEEDBACK COUNTS
+The six anchor tasks are accepted under all four recovery-criterion/feedback variants. Across the eight frozen suites, 23 reconstructed soft candidates fail a physical check, in 19 attempts; 15 of those attempts later return an accepted motion within budget. The exact-finishing branch returns 9 accepted motions. Across the 1,212 attempts in the eight frozen suites, four initialization failures concern one physical scene evaluated by four methods. The static-guide fallback follows 93 SFM simulation timeouts; no scalar-timing failure is recorded in these suites. Counts refer to attempted executions, including timing repetitions.
+% END FEEDBACK COUNTS

@@ -1,0 +1,11 @@
+\subsection{Task-Matched Nonlinear and Sequential Convex Comparisons}
+\label{sec:external}
+Three additional strategies are adapted to the same UAV task. ASCO-3D~\cite{li2021asco} changes the active collision-risk range, retaining the preceding successful reference after a failed reduced solve. Direct NLP imposes all sampled collision restrictions simultaneously. SCP-3D~\cite{augugliaro2012} uses the distance-norm tangent restrictions of Eq.~(17) in~\cite{augugliaro2012}, with supporting planes for the static boxes. All use hard integration equations, the same polyhedral motion limits, fixed endpoints, fixed horizon, and control-effort objective. Collision restrictions are evaluated at quarter-interval arc samples with reachable-motion padding. The returned motion undergoes the same endpoint reconstruction and complete-interval acceptance tests as LIOM.
+
+The nonlinear ASCO and direct-NLP instances use CasADi~\cite{andersson2019} and Ipopt~\cite{wachter2006} with the ma57 linear solver. Every quadratic subproblem uses OSQP. SCP assembles its sparse matrices directly; ASCO iterations without active nonlinear rows also use the QP backend. ASCO's original risk-range lengths are scaled by the ratio of UAV radius to the vehicle-disc radius in the source implementation. Its update rule and 50-round ceiling are retained; the common 30 s budget governs the comparison.
+
+The paired study comprises six original benchmark tasks, both winding layouts, and 15- and 20-UAV tasks. The winding tasks use $T_f=24$ s and $K=120$; the remaining tasks use $T_f=12$ s and $K=60$. The methods are evaluated serially. Each method receives the identical saved reference and is charged its measured generation time. The comparison records one execution per task--method pair. The nonlinear baselines are rerun with ma57; the unchanged QP implementations retain their recorded measurements. Construction, solution, and final checking all enter the reported time, including calls that overrun the nominal stopping budget.
+
+\input{data_revision/external_table}
+
+\input{data_revision/external_findings}
