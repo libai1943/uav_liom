@@ -34,7 +34,11 @@ for case in ids:
   for key in ['horizon','intervals','vmax','amax','radius','clearance','motionPolytope','totalBudget','smoothWeight','acceptanceBounds','validationTolerance']:
    assert np.array_equal(d['c'][key],baseline['c'][key]),(case,method,key)
   for x in h:
-   if x['info']['backend']=='ipopt':assert x['info']['linearSolver']=='ma57'
+   if x['info']['backend']=='none':
+    assert method in ['asco','nlp'] and x['info']['status']=='BUILD_BUDGET' and not d['result']['success'],(case,method,x['info'])
+    continue
+   assert x['info']['backend'] in ['ipopt','osqp'],(case,method,x['info']['backend'])
+   if x['info']['backend']=='ipopt':assert method in ['asco','nlp'] and x['info']['linearSolver']=='ma57'
    elif method in ['adaptive','rsc_iter','scp']:assert x['info']['backend']=='osqp'
   audit.append(dict(lookup[case,method],source=path.relative_to(R).as_posix(),backends=[x['info']['backend'] for x in h],statuses=[x['info']['status'] for x in h]))
 entry_lookup={(x['Case'],int(x['EntryBudget'])):x for x in entry};assert len(entry_lookup)==30
@@ -71,11 +75,11 @@ for case in ids:
 lines += [r'\bottomrule\end{tabularx}',r'\end{adjustwidth}\end{table}'];(O/'entry_budget_table.tex').write_text('\n'.join(lines)+'\n')
 entrytext=r'''The hard-entry ablation compares 1, 3, and 5 s on the same ten tasks, keeping the common reference and total 30 s budget fixed. Table~\ref{tab:entry-budget} reports full planning times and QP calls, including any subsequent recovery.'''
 (O/'entry_budget_narrative.tex').write_text(entrytext+'\n'+r'\input{data_revision/entry_budget_table}'+'\n')
-report=dict(ma57_rerun_attempts=20,entry_budget_attempts=30,selected_external_attempts=50,
+report=dict(nonlinear_attempts=20,entry_budget_attempts=30,external_attempts=50,
  same_inputs_verified=True,only_entry_budget_varies=True,ma57_nonlinear_verified=True,all_qps_osqp=True,
  accepted_physical_checks_verified=True,recommended_entry_seconds=3,comparison_entry_seconds=3,
  external=audit,entry=entry)
 (R/'results/comparison_audit.json').write_text(json.dumps(report,indent=2))
-with (C/'selected_comparison.csv').open('w',newline='') as f:
+with (C/'comparison_summary.csv').open('w',newline='') as f:
  w=csv.DictWriter(f,fieldnames=list(selected[0]));w.writeheader();w.writerows(lookup[c,m] for c in ids for m in methods)
 print(json.dumps({k:v for k,v in report.items() if k not in ['external','entry']},indent=2))

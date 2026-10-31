@@ -122,19 +122,23 @@ def main_results(audit):
    rr=filt(ms,Case=c);xs.append(ii+1+(j-2)*.12);ys.append(quant(rr,'Wall_s',.5));bad.append(not all(x['AcceptedWithinBudget'] for x in rr))
   axs[0].scatter(xs,ys,c=COL[m],marker=MARK[m],s=22 if m=='adaptive' else 15,label=NAMES[m],linewidths=.5)
   if any(bad):axs[0].scatter(np.asarray(xs)[bad],np.asarray(ys)[bad],marker='x',c='black',s=34,lw=.8)
-  tt=np.linspace(0,35,141);rates=[sum(x['Accepted'] and x['Wall_s']<=t for x in ms)/len(ms) for t in tt];axs[1].step(tt,rates,where='post',c=COL[m],lw=2 if m=='adaptive' else 1.3,marker=MARK[m],markevery=18,ms=4)
+  calls=[mean(filt(ms,Case=c),'QPSolves') for c in cs];axs[1].scatter(xs,calls,c=COL[m],marker=MARK[m],s=22 if m=='adaptive' else 15,linewidths=.5)
  axs[0].set_yscale('log');axs[0].set_ylabel('Median wall time (s)');axs[0].set_xlabel('Scene index');axs[0].set_xticks([1,5,10,15,20,25,30]);axs[0].grid(axis='y',alpha=.2)
  axs[0].legend(ncols=3,loc='upper center',bbox_to_anchor=(.5,1.33),frameon=False)
- axs[1].set_xlabel('Elapsed wall time (s)');axs[1].set_ylabel('Accepted fraction');axs[1].set_ylim(-.02,1.04);axs[1].grid(alpha=.2);axs[1].axvline(30,c='.3',ls=':',lw=.8)
+ axs[1].set_xlabel('Scene index');axs[1].set_ylabel('Mean QP calls');axs[1].set_xticks([1,5,10,15,20,25,30]);axs[1].grid(axis='y',alpha=.2)
  savefig(fig,'main_performance')
- chosen=[]
- for c in ['C25','C27','C29']:
-  rr=filt(rs,Case=c,Method='adaptive',Repeat=1)
-  if rr and rr[0]['Accepted']:chosen.append(loadjob('main',rr[0]))
+ chosen=[];chosen_ids=set()
+ for family,preferred,offset in [('crossing',25,1),('passage',15,3),('obstacles',5,5)]:
+  family_ids=[6*level+offset+layout for level in range(5) for layout in range(2)]
+  for num in [preferred]+[i for i in family_ids if i!=preferred]:
+   case=f'C{num:02d}';rr=filt(rs,Case=case,Method='adaptive',Repeat=1)
+   if rr and rr[0]['AcceptedWithinBudget']:
+    chosen.append(loadjob('main',rr[0]));chosen_ids.add(case);break
  if len(chosen)<3:
-  for c in ['C01','C03','C05']:
-   rr=filt(rs,Case=c,Method='adaptive',Repeat=1)
-   if rr and rr[0]['Accepted'] and len(chosen)<3:chosen.append(loadjob('main',rr[0]))
+  for rr in filt(rs,Method='adaptive',Repeat=1):
+   if rr['Case'] not in chosen_ids and rr['Accepted'] and len(chosen)<3:
+    chosen.append(loadjob('main',rr));chosen_ids.add(rr['Case'])
+ audit['illustrative_main_cases']=[d['job']['id'] for d in chosen]
  fig=plt.figure(figsize=(7.4,5.5));gs=fig.add_gridspec(2,3,hspace=.1,wspace=.18)
  for j,d in enumerate(chosen):
   for row in range(2):
@@ -164,22 +168,22 @@ def physical_results(audit):
   labels={'crossing':['10','15','20'],'passage':['3.2','2.6','2.0'],'obstacles':['1','2','3']}[family]
   audit['physical'][family]={}
   for mi,m in enumerate(PHYS):
-   success=[];times=[];entries=[]
+   calls=[];times=[];entries=[]
    for g in groups:
-    rr=filt(g,Method=m);success.append(count(rr)/len(rr) if rr else np.nan);times.append(mean(rr,'Wall_s'));entries.append({'n':len(rr),'accepted':count(rr),'physically_accepted':count(rr,'Accepted'),'late_accepted':count(rr,'Accepted')-count(rr),'wall':mean(rr,'Wall_s')})
+    rr=filt(g,Method=m);calls.append(mean(rr,'QPSolves'));times.append(mean(rr,'Wall_s'));entries.append({'n':len(rr),'accepted':count(rr),'physically_accepted':count(rr,'Accepted'),'late_accepted':count(rr,'Accepted')-count(rr),'wall':mean(rr,'Wall_s')})
    audit['physical'][family][m]=entries
-   xx=np.arange(3)+(mi-1.5)*.06;axs[0,j].plot(xx,success,marker=MARK[m],c=COL[m],ms=5,label=NAMES[m]);axs[1,j].plot(xx,times,marker=MARK[m],c=COL[m],ms=5)
+   xx=np.arange(3)+(mi-1.5)*.06;axs[0,j].plot(xx,calls,marker=MARK[m],c=COL[m],ms=5,label=NAMES[m]);axs[1,j].plot(xx,times,marker=MARK[m],c=COL[m],ms=5)
   for row in range(2):axs[row,j].set_xticks(range(3),labels);axs[row,j].grid(axis='y',alpha=.2)
-  axs[0,j].set_ylim(-.05,1.06);axs[1,j].set_xlabel(['Crossing team size','Passage width (m)','Obstacle size level'][j]);axs[1,j].axhline(30,c='.35',ls=':',lw=.8)
-  if j==0:axs[0,j].set_ylabel('Accepted within 30 s');axs[1,j].set_ylabel('Mean wall time (s)')
+  axs[0,j].set_ylim(bottom=0);axs[1,j].set_xlabel(['Crossing team size','Passage width (m)','Obstacle size level'][j]);axs[1,j].axhline(30,c='.35',ls=':',lw=.8)
+  if j==0:axs[0,j].set_ylabel('Mean QP calls');axs[1,j].set_ylabel('Mean wall time (s)')
   a=audit['physical'][family]['adaptive'];b=audit['physical'][family]['rsc_iter'];text.append(f"For {family} tasks, proposed LIOM accepts "+', '.join(f"{e['accepted']}/{e['n']}" for e in a)+', compared with '+', '.join(f"{e['accepted']}/{e['n']}" for e in b)+' for Hard RSC--iterative, in increasing difficulty order.')
  axs[0,1].legend(ncols=2,loc='upper center',bbox_to_anchor=(.5,1.4),frameon=False);savefig(fig,'physical_congestion')
- write('physical_narrative',' '.join(text)+' Figure~\\ref{fig:physical} retains all predetermined realizations. These results distinguish physical congestion from changing a numerical corridor cap; the corresponding runtime includes unsuccessful attempts.')
+ write('physical_narrative',' '.join(text)+' Figure~\\ref{fig:physical} retains all predetermined realizations. The corridor-growth settings are fixed, and runtime summaries include every attempt.')
  sc=rows('scaling');body=[];audit['scaling']=[]
  for N in [5,10,15,20]:
   for K in [30,60,90]:
-   a=filt(sc,N=N,K=K,Method='adaptive');b=filt(sc,N=N,K=K,Method='rsc_iter');row=[str(N),str(K),f'{count(a)}/2',fmt(mean(a,'Wall_s')),f'{count(b)}/2',fmt(mean(b,'Wall_s')),f"{int(mean(a,'NumVariables')):,}" if a else '--',f"{int(mean(a,'ConstraintRows')):,}" if a else '--'];body.append(row);audit['scaling'].append(dict(N=N,K=K,adaptive=outcome(a),rsc=outcome(b)))
- write('scaling_table',table('scaling-new','Team/grid study. Each cell uses two distinct realizations. Problem dimensions are the proposed method\'s mean maximum dimensions reached during an attempt; screened coupling varies with geometry.',['$N$','$K$','LIOM','Wall (s)','Hard RSC','Wall (s)','Variables','Rows'],body))
+   a=filt(sc,N=N,K=K,Method='adaptive');b=filt(sc,N=N,K=K,Method='rsc_iter');row=[str(N),str(K),f'{count(a)}/2',fmt(mean(a,'Wall_s')),f'{count(b)}/2',fmt(mean(b,'Wall_s')),f"{mean(a,'NumVariables'):,.0f}" if a else '--',f"{mean(a,'ConstraintRows'):,.0f}" if a else '--'];body.append(row);audit['scaling'].append(dict(N=N,K=K,adaptive=outcome(a),rsc=outcome(b)))
+ write('scaling_table',table('scaling-new','Team/grid study. Each cell uses two distinct realizations. Problem dimensions are the proposed method\'s rounded mean maximum dimensions reached during an attempt; screened coupling varies with geometry.',['$N$','$K$','LIOM','Wall (s)','Hard RSC','Wall (s)','Variables','Rows'],body))
  fig,axs=plt.subplots(1,2,figsize=(7.4,2.8),layout='constrained')
  for mi,m in enumerate(['adaptive','rsc_iter']):
   for j,K in enumerate([30,60,90]):
@@ -199,8 +203,8 @@ def ablations(audit):
  init=rows('initialization');body=[]
  for i in ['sfm','straight','guide']:
   for guide in [0,1]:
-   rr=filt(init,Variant=f'{i}_guides{guide}');body.append([{'sfm':'SFM + guide fallback','straight':'Straight','guide':'Static guide'}[i],str(bool(guide)),f'{count(rr)}/{len(rr)}',fmt(mean(rr,'Wall_s')),fmt(mean(rr,'OuterIterations'))])
- write('initialization_table',table('initialization-new','Reference geometry and later guide availability crossed on six anchor scenes.',['Reference','Relocation guide','Accepted','Wall (s)','Rounds'],body));audit['initialization']=body
+   rr=filt(init,Variant=f'{i}_guides{guide}');body.append([{'sfm':'SFM + guide fallback','straight':'Straight','guide':'Static guide'}[i],('Yes' if guide else 'No'),f'{count(rr)}/{len(rr)}',fmt(mean(rr,'Wall_s')),fmt(mean(rr,'OuterIterations'))])
+ write('initialization_table',table('initialization-new','Reference geometry and later guide availability in Soft LIOM, crossed on six anchor scenes.',['Reference','Relocation guide','Accepted','Wall (s)','Rounds'],body));audit['initialization']=body
  ss=rows('sensitivity');nom=filt(ss,Variant='nominal');body=[];pretty={'smoothWeight':'Control effort $w_a$','kinematicPenalty':'Initial defect penalty','slackPenalty':'Initial slack penalty','kinematicPenaltyMax':'Defect penalty cap','slackPenaltyMax':'Slack penalty cap','normalizedDefectTolerance':'Normalized defect tolerance','meanSlackTolerance':'Mean slack tolerance','stcExpansion':'Spatial growth cap','rstcExpansion':'Relative growth cap','sfmRepulsion':'SFM repulsion','sfmDistance':'SFM decay length','sfmLookahead':'SFM look-ahead','sfmTrackingTime':'SFM response time','sfmTangentialFraction':'SFM tangential fraction','qpCandidateTolerance':'Candidate row tolerance'}
  for field,name in pretty.items():
   lo=filt(ss,Variant=field+'_x0.5');hi=filt(ss,Variant=field+'_x2');body.append([name,f'{count(lo)}/6',fmt(mean(lo,'Wall_s')),f'{count(hi)}/6',fmt(mean(hi,'Wall_s'))])
@@ -211,18 +215,18 @@ def ablations(audit):
   for fb in [0,1]:
    rr=filt(acc,Variant=f'normalized{norm}_finish{fb}');body.append([('Normalized' if norm else 'Aggregate')+(' + feedback' if fb else ', no feedback'),f'{count(rr)}/6',fmt(mean(rr,'Wall_s')),fmt(mean(rr,'QPSolves'))])
  for p in ['cube','hull14','hull26']:
-  rr=filt(bounds,Variant=p,Method='liom');body.append([tex(p)+' motion envelope',f'{count(rr)}/6',fmt(mean(rr,'Wall_s')),fmt(mean(rr,'QPSolves'))])
+  rr=filt(bounds,Variant=p,Method='liom');body.append([{'cube':'Inscribed cube','hull14':'14-vertex polytope','hull26':'26-vertex polytope'}[p],f'{count(rr)}/6',fmt(mean(rr,'Wall_s')),fmt(mean(rr,'QPSolves'))])
  audit['acceptance_bounds']=body
  txt=table('mechanism-new','Soft-loop acceptance feedback and motion-envelope studies on six scenes. Feedback combines tolerance tightening with an exact-kinematics finish; its components are evaluated jointly.',['Variant','Accepted','Wall (s)','QP calls'],body)
- txt+='\nThe hard-iterative comparison holds reconstruction opportunities fixed. The hard-entry ablation compares proposed LIOM with Soft LIOM. The acceptance-feedback study examines how rejected reconstructed motions affect subsequent computation; it also records rejection reasons and additional exact-QP calls.\n'
+ txt+='\nThe hard-iterative comparison holds reconstruction opportunities fixed. The hard-entry ablation compares proposed LIOM with Soft LIOM. All 24 acceptance-study attempts pass without activating an exact finish. Table~\\ref{tab:feedback-cases} provides the larger-team traces in which the motion check activates the feedback branch.\n'
  write('ablation_narrative',txt)
  sp=ROOT/'results/osqp_numerical_audit/summary.csv';body=[]
  if sp.exists():
   sr=list(csv.DictReader(sp.open()));audit['osqp_audit']=sr
   for qp in ['soft','hard','rsc']:
    for mode in ['candidate','strict','strict_tight']:
-    selected=[r for r in sr if r['QP']==qp and r['Mode']==mode];good=sum(float(r['MaxViolation'])<=1e-3 for r in selected);viol=max(float(r['MaxViolation']) for r in selected);tm=np.mean([float(r['Setup_s'])+float(r['Solve_s']) for r in selected]);it=np.mean([float(r['Iterations']) for r in selected]);body.append([qp,{'candidate':'Readiness','strict':r'Standard ($10^{-6}$)','strict_tight':r'Standard ($10^{-7}$)'}[mode],str(good)+'/3',f'{viol:.1e}',fmt(tm),f'{it:,.0f}'])
-  write('solver_table',table('solver-new','OSQP audit on identical matrices from three anchor scenes. Readiness stopping is compared with ordinary termination at two tolerances. The feasible-column criterion is maximum linear-row violation $\\leq10^{-3}$; full trajectories still require physical acceptance.',['QP','Termination','Row test','Max. violation','Time (s)','Iterations'],body))
+    selected=[r for r in sr if r['QP']==qp and r['Mode']==mode];good=sum(float(r['MaxViolation'])<=1e-3 for r in selected);viol=max(float(r['MaxViolation']) for r in selected if 'infeasible' not in r['Status']);tm=np.mean([float(r['Setup_s'])+float(r['Solve_s']) for r in selected]);it=np.mean([float(r['Iterations']) for r in selected]);body.append([qp,{'candidate':'Readiness','strict':r'Standard ($10^{-6}$)','strict_tight':r'Standard ($10^{-7}$)'}[mode],str(good)+'/3',f'{viol:.1e}',fmt(tm),f'{it:,.0f}'])
+  write('solver_table',table('solver-new','OSQP audit on identical matrices from three anchor scenes. Readiness stopping is compared with ordinary termination at two tolerances. Maximum violation excludes solver infeasibility certificates, which are not candidate states. The row-test criterion is maximum linear-row violation $\\leq10^{-3}$; full trajectories still require physical acceptance.',['QP','Termination','Row test','Max. violation','Time (s)','Iterations'],body))
  else:raise RuntimeError('OSQP audit is not complete')
 
 def recovery(audit):
@@ -237,7 +241,7 @@ def recovery(audit):
   text+='\nThe targeted passage configurations and every attempted outcome are included in the accompanying records.\n'
  else:raise RuntimeError('Targeted geometry study is not complete')
  # Individual candidate/check failures are counted independently from final outcomes.
- failure={};fallback={};outer={};phase={};reject={};initErrors={};fallbackReasons={};feedback={'soft_rejected_candidates':0,'attempts_with_soft_rejection':0,'accepted_within_budget_after_soft_rejection':0,'accepted_exact_finishes':0,'rejected_reasons':{}}
+ failure={};fallback={};outer={};phase={};reject={};initErrors={};fallbackReasons={};method_mechanisms={};feedback={'soft_rejected_candidates':0,'attempts_with_soft_rejection':0,'accepted_within_budget_after_soft_rejection':0,'accepted_exact_finishes':0,'rejected_reasons':{}}
  for suite in ['main','physical','horizon','scaling','sensitivity','initialization','bounds','acceptance']:
   for rr in rows(suite):
    key=suite+'/'+rr['Method'];failure.setdefault(key,{})[('accepted_over_budget' if rr['Accepted'] and not rr['AcceptedWithinBudget'] else rr['FailureStage'] or 'accepted')]=failure.setdefault(key,{}).get(('accepted_over_budget' if rr['Accepted'] and not rr['AcceptedWithinBudget'] else rr['FailureStage'] or 'accepted'),0)+1
@@ -246,7 +250,16 @@ def recovery(audit):
    if rr['FailureStage']=='initialization':
     msg=r.get('exception',{}).get('identifier','unknown');initErrors[msg]=initErrors.get(msg,0)+1
    had_soft_rejection=False
+   mm=method_mechanisms.setdefault(key,dict(attempts=0,outer_rounds=[],qp_calls=[],phases={},accepted_phases={},accepted_within_budget_phases={},reconstructed_rejections={},seed_relocations_static=0,seed_relocations_relative=0))
+   mm['attempts']+=1;mm['outer_rounds'].append(int(r['outerIterations']));mm['qp_calls'].append(int(r['solveCount']))
+   mm['seed_relocations_static']+=int(r.get('relocatedStatic',0));mm['seed_relocations_relative']+=int(r.get('relocatedRelative',0))
    for h in hist(r):
+    ph=h['phase'];mm['phases'][ph]=mm['phases'].get(ph,0)+1
+    if h['accepted']:
+     mm['accepted_phases'][ph]=mm['accepted_phases'].get(ph,0)+1
+     mm['accepted_within_budget_phases'][ph]=mm['accepted_within_budget_phases'].get(ph,0)+int(rr['AcceptedWithinBudget'])
+    if h['numericalRecovery'] and not h['accepted']:
+     why=h['validation'].get('message','unknown');mm['reconstructed_rejections'][why]=mm['reconstructed_rejections'].get(why,0)+1
     phase[h['phase']]=phase.get(h['phase'],0)+1
     if h['phase']=='exact_finish' and h['accepted']:feedback['accepted_exact_finishes']+=1
     if h['phase']=='soft' and h['numericalRecovery'] and not h['accepted']:
@@ -257,7 +270,20 @@ def recovery(audit):
    if had_soft_rejection:
     feedback['attempts_with_soft_rejection']+=1
     feedback['accepted_within_budget_after_soft_rejection']+=int(rr['AcceptedWithinBudget'])
- audit.update(failure_modes=failure,guide_fallbacks=fallback,initialization_errors=initErrors,phase_counts=phase,reconstructed_rejections=reject,fallback_reason_counts=fallbackReasons,acceptance_feedback=feedback)
+ audit.update(method_mechanisms=method_mechanisms,failure_modes=failure,guide_fallbacks=fallback,initialization_errors=initErrors,phase_counts=phase,reconstructed_rejections=reject,fallback_reason_counts=fallbackReasons,acceptance_feedback=feedback)
+
+ examples=[];body=[]
+ for suite,case,label in [('scaling','N10_K030_S4101','10-UAV layout A'),('scaling','N10_K030_S4102','10-UAV layout B'),('physical','obstacles_L1_S3101','10-UAV obstacle field')]:
+  rr=filt(rows(suite),Case=case,Method='adaptive',Repeat=1)[0];z=loadjob(suite,rr)['result'];hh=hist(z)
+  rejected=next(h for h in hh if h['phase']=='soft' and h['numericalRecovery'] and not h['accepted'])
+  accepted=next(h for h in reversed(hh) if h['accepted']);quantity='maxAcceleration' if rejected['validation']['message']=='acceleration bound' else 'maxSpeed'
+  title='Acceleration (m/s$^2$)' if quantity=='maxAcceleration' else 'Speed (m/s)';step='Exact-kinematics QP' if accepted['phase']=='exact_finish' else 'Tightened recovery'
+  before=float(rejected['validation'][quantity]);after=float(z['validation'][quantity])
+  examples.append(dict(suite=suite,case=case,rejected_quantity=quantity,rejected_peak=before,accepted_peak=after,accepted_phase=accepted['phase'],within_budget=bool(rr['AcceptedWithinBudget']),wall=rr['Wall_s']))
+  body.append([label,title,f'{before:.5f}',f'{after:.5f}',step])
+ audit['feedback_case_examples']=examples
+ text+= '\n'+table('feedback-cases','Representative LIOM acceptance-feedback traces. The two crossing layouts use $N=10$, $K=30$; the obstacle-field case uses $N=10$, $K=60$. The physical speed and acceleration limits are 4 m/s and 3 m/s$^2$, with an acceptance tolerance of $2\\times10^{-5}$ in the corresponding units.',['Task','Checked quantity','Rejected peak','Accepted peak','Return step'],body,widths='llrrl')
+ text+='\nThe two coarse-grid crossing layouts reach numerical recovery before their reconstructed motions pass the physical limit tests. An exact-kinematics finish produces the accepted motion in each case. In the obstacle-field trace, a further relaxed solve under tighter recovery requirements produces the accepted motion after the exact finish misses its numerical gate. These traces show the continuation steps triggered by the motion check.\n'
  write('recovery_narrative',text)
 
 def tracking(audit):
@@ -266,7 +292,7 @@ def tracking(audit):
  records=json.loads(p.read_text());audit['tracking']=records;body=[]
  for cond in [False,True]:
   rr=[r for r in records if r['disturbed']==cond];body.append(['Perturbed' if cond else 'Nominal',str(len(rr)),fmt(max(r['max_error'] for r in rr),3),fmt(np.mean([r['rms_error'] for r in rr]),3),fmt(max(r['terminal_error'] for r in rr),3),fmt(min(r['min_pair_clearance'] for r in rr),3),str(sum(r['contact_steps']>0 for r in rr))])
- write('tracking_table',table('tracking-new','MuJoCo tracking over the prescribed flight interval. Terminal error is measured at $T_f$, before the separately logged settling interval. Clearance is center distance minus two planning radii.',['Condition','Motions','Max. error (m)','Mean RMS (m)','Terminal (m)','Pair gap (m)','Contact runs'],body));write('tracking_narrative','The simulator evaluates all accepted proposed-method motions from the first main-benchmark repetition and predetermined accepted larger-team and winding-recovery examples. The same controller is used in the nominal and perturbed conditions. Table~\\ref{tab:tracking-new} reports position error, terminal accuracy at the specified completion time, separation, and contact outcomes. Full time histories, simulator models, and settings accompany the results.')
+ write('tracking_table',table('tracking-new','MuJoCo tracking over the prescribed flight interval. Terminal error is measured at $T_f$, before the separately logged settling interval. Clearance is center distance minus two planning radii.',['Condition','Motions','Max. error (m)','Mean RMS (m)','Terminal (m)','Pair gap (m)','Contact runs'],body));write('tracking_narrative','The simulator evaluates all accepted proposed-method motions from the first main-benchmark repetition and larger-team and winding examples selected by the stated fixed rule. The same controller is used in the nominal and perturbed conditions. Table~\\ref{tab:tracking-new} reports position error, terminal accuracy at the specified completion time, separation, and contact outcomes. Full time histories, simulator models, and settings accompany the results.')
  chosen=next((r for r in records if r.get('case')=='PW1_S6102_R1' and r['disturbed']),next(r for r in records if r['disturbed']));ar=np.load(ROOT/'results/mujoco_tracking'/Path(chosen['folder']).name/'tracking.npz');log=ar['log'];P=ar['position'];R=ar['reference'];T=chosen['Tf'];sel=log[:,0]<=T
  fig=plt.figure(figsize=(7.4,4.2));gs=fig.add_gridspec(2,2,width_ratios=[.9,1.15],hspace=.35,wspace=.60);ax=fig.add_subplot(gs[:,0],projection='3d');colors=plt.colormaps['turbo'](np.linspace(.05,.94,P.shape[2]))
  for i,c in enumerate(colors):ax.plot(*R[sel,:,i].T,c=c,ls='--',lw=1);ax.plot(*P[sel,:,i].T,c=c,lw=1.3)
